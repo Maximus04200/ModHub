@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: modhub
+      POSTGRES_PASSWORD: modhub
+      POSTGRES_DB: modhub
+    ports:
+      - "5432:5432"
+    volumes:
+      - modhub_postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - modhub_mongo_data:/data/db
+
+volumes:
+  modhub_postgres_data:
+  modhub_mongo_data:

@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ModStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+
+  mods     Mod[]
+  ratings  Rating[]
+  comments Comment[]
+  follows  Follow[]
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String @unique
+  slug String @unique
+
+  mods Mod[]
+}
+
+model Mod {
+  id          String    @id @default(uuid())
+  title       String
+  slug        String    @unique
+  summary     String
+  description String
+  gameKey     String
+  status      ModStatus @default(PENDING)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  authorId   String
+  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  versions Version[]
+  ratings  Rating[]
+  comments Comment[]
+  follows  Follow[]
+
+  @@index([gameKey])
+  @@index([status])
+}
+
+model Version {
+  id            String   @id @default(uuid())
+  modId         String
+  mod           Mod      @relation(fields: [modId], references: [id], onDelete: Cascade)
+  versionLabel  String
+  changelog     String
+  fileUrl       String
+  fileSizeBytes Int
+  downloadCount Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  @@unique([modId, versionLabel])
+}
+
+model Rating {
+  id        String   @id @default(uuid())
+  modId     String
+  mod       Mod      @relation(fields: [modId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  value     Int
+  createdAt DateTime @default(now())
+
+  @@unique([modId, userId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  modId     String
+  mod       Mod      @relation(fields: [modId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Follow {
+  id        String   @id @default(uuid())
+  modId     String
+  mod       Mod      @relation(fields: [modId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([modId, userId])
+}
