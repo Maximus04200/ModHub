@@ -120,6 +120,14 @@ export const modService = {
     return activityRepository.feedForMods(modIds, 50);
   },
 
+  myMods(authorId: string) {
+    return modRepository.findByAuthor(authorId);
+  },
+
+  pendingMods() {
+    return modRepository.findByStatus('PENDING');
+  },
+
   async moderate(modId: string, status: ModStatus) {
     const mod = await modRepository.findById(modId);
     if (!mod) {

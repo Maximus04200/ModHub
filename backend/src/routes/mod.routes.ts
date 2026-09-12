@@ -6,6 +6,8 @@ export const modRouter = Router();
 
 modRouter.get('/', modController.search);
 modRouter.get('/feed', requireAuth, modController.feed);
+modRouter.get('/mine', requireAuth, modController.mine);
+modRouter.get('/moderation/pending', requireAuth, requireRole('ADMIN'), modController.pending);
 modRouter.get('/:slug', modController.getBySlug);
 
 modRouter.post('/', requireAuth, modController.create);

@@ -20,6 +20,10 @@ export const modRepository = {
         author: { select: { id: true, displayName: true } },
         category: true,
         versions: { orderBy: { createdAt: 'desc' } },
+        comments: {
+          orderBy: { createdAt: 'desc' },
+          include: { user: { select: { id: true, displayName: true } } },
+        },
         _count: { select: { ratings: true, comments: true, follows: true } },
       },
     });
@@ -94,5 +98,21 @@ export const modRepository = {
     return prisma.follow
       .findMany({ where: { userId }, select: { modId: true } })
       .then((rows) => rows.map((r) => r.modId));
+  },
+
+  findByAuthor(authorId: string) {
+    return prisma.mod.findMany({
+      where: { authorId },
+      orderBy: { createdAt: 'desc' },
+      include: { category: true },
+    });
+  },
+
+  findByStatus(status: ModStatus) {
+    return prisma.mod.findMany({
+      where: { status },
+      orderBy: { createdAt: 'asc' },
+      include: { author: { select: { id: true, displayName: true } }, category: true },
+    });
   },
 };

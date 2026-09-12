@@ -95,6 +95,17 @@ export const modController = {
     res.json(feed);
   },
 
+  async mine(req: Request, res: Response): Promise<void> {
+    const { userId } = requireAuthUser(req);
+    const mods = await modService.myMods(userId);
+    res.json(mods);
+  },
+
+  async pending(_req: Request, res: Response): Promise<void> {
+    const mods = await modService.pendingMods();
+    res.json(mods);
+  },
+
   async moderate(req: Request, res: Response): Promise<void> {
     const { status } = moderateSchema.parse(req.body);
     const mod = await modService.moderate(requireParam(req.params.id), status);
