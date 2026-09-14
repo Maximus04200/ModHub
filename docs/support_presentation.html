@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Support de présentation — ModHub</title>
+<style>
+  @page { size: 297mm 167mm; margin: 0; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; color: #1c1e22; }
+  .slide {
+    width: 297mm; height: 167mm; page-break-after: always;
+    padding: 16mm 20mm; position: relative; overflow: hidden;
+    background: #ffffff;
+  }
+  .slide:last-child { page-break-after: avoid; }
+  .slide.dark { background: #14213d; color: white; }
+  .kicker { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #5b8def; font-weight: 600; margin-bottom: 10px; }
+  h1 { font-size: 38px; margin: 0 0 14px; color: #14213d; }
+  .dark h1 { color: white; }
+  h2 { font-size: 24px; margin: 0 0 20px; color: #14213d; }
+  .dark h2 { color: white; }
+  p.lead { font-size: 17px; color: #444; max-width: 850px; line-height: 1.5; }
+  .dark p.lead { color: #d5dbe8; }
+  ul.big { font-size: 17px; line-height: 1.9; }
+  ul.big li { margin-bottom: 6px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  .card { background: #f4f6fb; border-radius: 10px; padding: 18px 20px; border: 1px solid #e0e4ee; }
+  .card h3 { margin: 0 0 8px; font-size: 15px; color: #2a5cae; }
+  .card p { margin: 0; font-size: 13px; color: #444; }
+  .badge { display: inline-block; background: #5b8def; color: white; font-size: 11px; padding: 3px 10px; border-radius: 12px; margin: 3px 6px 3px 0; }
+  .badge.alt { background: #3fb27f; }
+  .center { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center; }
+  .shot { max-height: 92mm; max-width: 100%; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+  .shot-row { display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin-top: 14px; }
+  .shot-row figure { margin: 0; text-align: center; }
+  .shot-row img { max-height: 90mm; border: 1px solid #ccc; border-radius: 6px; }
+  figcaption { font-size: 11px; color: #777; margin-top: 6px; }
+  .pageno { position: absolute; bottom: 8mm; right: 14mm; font-size: 11px; color: #999; }
+  .dark .pageno { color: #8fa0c9; }
+  table.compact { border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+  table.compact th, table.compact td { border: 1px solid #dde2ee; padding: 8px 14px; text-align: left; }
+  table.compact th { background: #eef2fb; }
+  code { background: #eef0f4; padding: 1px 6px; border-radius: 4px; font-family: Consolas, monospace; font-size: 13px; }
+  .placeholder { background: #fff4e5; border: 1px dashed #e0a94f; color: #8a5c15; padding: 4px 10px; border-radius: 4px; font-size: 13px; display: inline-block; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<div class="slide dark center">
+  <div class="kicker">Titre Professionnel Développeur Web et Web Mobile</div>
+  <h1 style="font-size:52px;">ModHub</h1>
+  <p class="lead" style="font-size:19px;">Plateforme communautaire de partage de mods pour jeux vidéo</p>
+  <p class="placeholder" style="margin-top:30px;">[Prénom NOM] — [Centre de formation] — [Date]</p>
+</div>
+
+<!-- 2 -->
+<div class="slide">
+  <div class="kicker">Sommaire</div>
+  <h2>Plan de la présentation</h2>
+  <ul class="big">
+    <li>Le candidat et le contexte du projet</li>
+    <li>Le besoin et les objectifs de ModHub</li>
+    <li>Démonstration de l'application</li>
+    <li>Architecture technique et choix justifiés</li>
+    <li>Focus compétences : front-end et back-end</li>
+    <li>Sécurité et tests</li>
+    <li>Difficultés rencontrées et bilan</li>
+    <li>Questions</li>
+  </ul>
+</div>
+
+<!-- 3 -->
+<div class="slide">
+  <div class="kicker">01 — Candidat</div>
+  <h2>Qui suis-je ?</h2>
+  <p class="placeholder">À compléter : parcours, formation, motivation pour le développement web</p>
+</div>
+
+<!-- 4 -->
+<div class="slide">
+  <div class="kicker">02 — Contexte</div>
+  <h2>Pourquoi ce projet ?</h2>
+  <p class="lead">Les communautés de modding de jeux vidéo s'organisent souvent autour d'outils génériques
+  (forums, Discord) mal adaptés au suivi structuré d'un mod : versions, compatibilité, retours qualitatifs.</p>
+  <p class="lead" style="margin-top:16px;"><strong>ModHub</strong> centralise la publication, le suivi de versions
+  et les retours communautaires autour des mods.</p>
+</div>
+
+<!-- 5 -->
+<div class="slide">
+  <div class="kicker">02 — Contexte</div>
+  <h2>Publics et besoins</h2>
+  <table class="compact">
+    <tr><th>Public</th><th>Besoin</th></tr>
+    <tr><td>Créateurs</td><td>Publier, gérer des versions, suivre l'adoption</td></tr>
+    <tr><td>Communauté</td><td>Trouver, évaluer, suivre des mods de qualité</td></tr>
+    <tr><td>Modérateurs</td><td>Garantir la qualité du catalogue public</td></tr>
+  </table>
+</div>
+
+<!-- 6 -->
+<div class="slide">
+  <div class="kicker">03 — Démonstration</div>
+  <h2>Le catalogue public</h2>
+  <div class="shot-row">
+    <figure><img class="shot" src="screenshots/01-catalogue.png"><figcaption>Recherche dynamique, filtrage côté client</figcaption></figure>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="slide">
+  <div class="kicker">03 — Démonstration</div>
+  <h2>La fiche mod</h2>
+  <div class="shot-row">
+    <figure><img class="shot" src="screenshots/02-mod-detail.png"><figcaption>Données relationnelles + métadonnées NoSQL assemblées</figcaption></figure>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="slide">
+  <div class="kicker">03 — Démonstration</div>
+  <h2>Publication et modération</h2>
+  <div class="shot-row">
+    <figure><img src="screenshots/05-dashboard.png" style="max-height:80mm;border:1px solid #ccc;border-radius:6px;"><figcaption>Espace créateur</figcaption></figure>
+    <figure><img src="screenshots/06-admin.png" style="max-height:80mm;border:1px solid #ccc;border-radius:6px;"><figcaption>File de modération admin</figcaption></figure>
+  </div>
+</div>
+
+<!-- 9 -->
+<div class="slide">
+  <div class="kicker">04 — Architecture</div>
+  <h2>Vue d'ensemble</h2>
+  <div class="grid3">
+    <div class="card"><h3>Frontend</h3><p>React 19 + TypeScript (Vite), React Router, contexte d'authentification</p></div>
+    <div class="card"><h3>Backend</h3><p>Node.js + Express 5 + TypeScript, architecture en couches</p></div>
+    <div class="card"><h3>Données</h3><p>PostgreSQL (Prisma) + MongoDB (Mongoose)</p></div>
+  </div>
+  <p style="margin-top:26px;">
+    <span class="badge">routes</span> → <span class="badge">controllers</span> → <span class="badge">services</span>
+    → <span class="badge alt">repositories SQL</span> / <span class="badge alt">repositories NoSQL</span>
+  </p>
+</div>
+
+<!-- 10 -->
+<div class="slide dark">
+  <div class="kicker">04 — Architecture</div>
+  <h2 style="color:white;">Pourquoi deux bases de données ?</h2>
+  <table class="compact" style="color:#1c1e22;background:white;border-radius:8px;overflow:hidden;">
+    <tr><th>PostgreSQL</th><th>MongoDB</th></tr>
+    <tr><td>Utilisateurs, mods, versions, notes, follows</td><td>Fil d'activité (forme variable par événement)</td></tr>
+    <tr><td>Relations fortes, intégrité référentielle</td><td>Métadonnées spécifiques à chaque jeu (schéma libre)</td></tr>
+  </table>
+</div>
+
+<!-- 11 -->
+<div class="slide">
+  <div class="kicker">05 — Bloc 1 : front-end</div>
+  <h2>Maquette → statique → dynamique</h2>
+  <ul class="big">
+    <li><strong>Maquette</strong> — wireframes basse fidélité des écrans clés avant implémentation</li>
+    <li><strong>Statique</strong> — CSS Grid / Flexbox, jetons de couleur centralisés, sans framework externe</li>
+    <li><strong>Dynamique</strong> — recherche avec debounce, contexte d'auth React, routes protégées par rôle</li>
+  </ul>
+</div>
+
+<!-- 12 -->
+<div class="slide">
+  <div class="kicker">06 — Bloc 2 : back-end</div>
+  <h2>SQL et NoSQL, un vrai usage double</h2>
+  <p class="lead">La création d'un mod illustre la collaboration des deux bases :</p>
+  <ol class="big">
+    <li>Écriture de l'entité <code>Mod</code> en PostgreSQL (Prisma)</li>
+    <li>Écriture des métadonnées spécifiques au jeu en MongoDB</li>
+    <li>Journalisation de l'événement dans le fil d'activité MongoDB</li>
+  </ol>
+  <p style="margin-top:14px;">Vérifié par un test d'intégration qui contrôle les deux bases après l'appel API.</p>
+</div>
+
+<!-- 13 -->
+<div class="slide">
+  <div class="kicker">07 — Sécurité</div>
+  <h2>Mesures appliquées</h2>
+  <ul class="big">
+    <li>Mots de passe hachés (bcrypt), message d'erreur générique anti-énumération</li>
+    <li>Autorisation vérifiée côté service (propriété, rôle admin)</li>
+    <li>Erreurs centralisées : pas de fuite de stack trace au client</li>
+    <li>Rate limiting sur l'authentification, CORS restreint</li>
+    <li>Row Level Security activée sur les tables Supabase</li>
+  </ul>
+</div>
+
+<!-- 14 -->
+<div class="slide">
+  <div class="kicker">08 — Tests</div>
+  <h2>Tests d'intégration bout-en-bout</h2>
+  <p class="lead">Les tests exercent l'application réelle contre les vraies bases de développement (pas de mocks)
+  pour valider un comportement effectif plutôt qu'une simulation.</p>
+  <p style="font-size:22px;margin-top:20px;"><strong>9 / 9 tests passent</strong> — auth + cycle de vie complet
+  d'un mod (SQL + NoSQL)</p>
+</div>
+
+<!-- 15 -->
+<div class="slide">
+  <div class="kicker">09 — Bilan</div>
+  <h2>Difficultés rencontrées</h2>
+  <ul class="big">
+    <li>Pas de Docker fonctionnel en local → bascule vers Postgres managé (Supabase)</li>
+    <li>Changement d'API majeur dans Prisma 7 (driver adapters) → vérification directe plutôt qu'hypothèse</li>
+    <li>Typage strict Express 5 sur les paramètres de route → garde-fou dédié</li>
+  </ul>
+</div>
+
+<!-- 16 -->
+<div class="slide">
+  <div class="kicker">09 — Bilan</div>
+  <h2>Perspectives</h2>
+  <ul class="big">
+    <li>Upload de fichiers réel pour les versions de mods</li>
+    <li>Notifications temps réel (WebSocket) sur le fil d'activité</li>
+    <li>Tags libres en complément des catégories</li>
+    <li>Tests end-to-end côté interface (Playwright)</li>
+  </ul>
+</div>
+
+<!-- 17 -->
+<div class="slide dark center">
+  <h1 style="color:white;">Merci de votre attention</h1>
+  <p class="lead">Dépôt du projet : github.com/Maximus04200/ModHub</p>
+  <p class="lead" style="margin-top:30px;">Questions ?</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Dossier de projet — ModHub</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #1c1e22;
+    line-height: 1.55;
+    font-size: 13px;
+    margin: 0;
+  }
+  h1, h2, h3, h4 { color: #14213d; font-family: 'Segoe UI', Arial, sans-serif; }
+  h1 { font-size: 24px; border-bottom: 3px solid #5b8def; padding-bottom: 8px; margin-top: 0; }
+  h2 { font-size: 18px; margin-top: 34px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+  h3 { font-size: 15px; color: #2a5cae; margin-top: 22px; }
+  h4 { font-size: 13.5px; margin-top: 16px; }
+  .section { page-break-before: always; }
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 240mm; text-align: center; }
+  .cover .tag { background: #5b8def; color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; }
+  .cover h1 { border: none; font-size: 40px; margin-bottom: 6px; }
+  .cover .subtitle { font-size: 16px; color: #555; margin-bottom: 60px; }
+  .cover .meta { font-size: 13px; color: #444; margin-top: 80px; line-height: 2; }
+  .placeholder { background: #fff4e5; border: 1px dashed #e0a94f; color: #8a5c15; padding: 3px 8px; border-radius: 4px; font-size: 12px; }
+  .toc { page-break-after: always; }
+  .toc ol { line-height: 2.1; font-size: 14px; }
+  .toc ol ol { font-size: 13px; color: #333; }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 12px; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #eef2fb; }
+  code, pre { font-family: 'Cascadia Code', Consolas, monospace; font-size: 11.5px; }
+  pre { background: #1c1e22; color: #e8e9ec; padding: 12px 14px; border-radius: 6px; overflow-x: auto; line-height: 1.5; }
+  pre .c { color: #7f848e; }
+  code.inline { background: #eef0f4; padding: 1px 5px; border-radius: 3px; }
+  .callout { background: #eef6f0; border-left: 4px solid #3fb27f; padding: 10px 14px; margin: 14px 0; font-size: 12.5px; }
+  .callout.warn { background: #fdf1ee; border-left-color: #e0554f; }
+  .callout.info { background: #eef2fb; border-left-color: #5b8def; }
+  figure { margin: 16px 0; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid #ccc; border-radius: 4px; }
+  figcaption { font-size: 11.5px; color: #666; margin-top: 6px; }
+  ul, ol { margin: 8px 0; }
+  li { margin-bottom: 4px; }
+  .skill-block { border: 1px solid #d8dde6; border-radius: 8px; padding: 16px 18px; margin: 18px 0; background: #fbfcfe; }
+  .skill-block h4 { margin-top: 0; color: #14213d; }
+  .badge-competence { display: inline-block; background: #14213d; color: white; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+  .two-col { display: flex; gap: 20px; }
+  .two-col > div { flex: 1; }
+  .wf-frame { border: 2px solid #333; background: #fafafa; padding: 0; }
+  .wf-nav { display: flex; align-items: center; gap: 14px; border-bottom: 2px solid #333; padding: 8px 12px; background: #eee; }
+  .wf-box { border: 1px dashed #999; background: #fff; }
+  .wf-text { background: #ddd; border-radius: 2px; }
+  .wf-btn { border: 1px solid #333; background: #ccc; padding: 4px 10px; font-size: 10px; text-align:center; }
+  footer.page-footer { font-size: 10px; color: #888; text-align: center; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE DE GARDE ============ -->
+<div class="cover">
+  <div class="tag">Titre Professionnel Développeur Web et Web Mobile</div>
+  <h1>ModHub</h1>
+  <div class="subtitle">Plateforme communautaire de partage de mods pour jeux vidéo</div>
+  <div class="meta">
+    Dossier de projet<br>
+    <span class="placeholder">[Prénom NOM du candidat]</span><br>
+    <span class="placeholder">[Nom du centre de formation]</span><br>
+    Session <span class="placeholder">[date de la session d'examen]</span>
+  </div>
+</div>
+
+<!-- ============ SOMMAIRE ============ -->
+<div class="toc">
+  <h1>Sommaire</h1>
+  <ol>
+    <li>Présentation du candidat <span class="placeholder">à compléter</span></li>
+    <li>Présentation du projet
+      <ol type="a"><li>Contexte et origine</li><li>Objectifs et public visé</li><li>Fonctionnalités</li></ol>
+    </li>
+    <li>Gestion de projet</li>
+    <li>Architecture et choix techniques
+      <ol type="a"><li>Vue d'ensemble</li><li>Modèle de données</li><li>Justification des choix</li></ol>
+    </li>
+    <li>Compétences — Bloc 1 : Front-end
+      <ol type="a"><li>Maquetter les interfaces</li><li>Réaliser les interfaces statiques</li><li>Développer la partie dynamique</li></ol>
+    </li>
+    <li>Compétences — Bloc 2 : Back-end
+      <ol type="a"><li>Base de données relationnelle</li><li>Accès aux données SQL et NoSQL</li><li>Composants métier serveur</li></ol>
+    </li>
+    <li>Sécurisation de l'application</li>
+    <li>Tests</li>
+    <li>Bilan et perspectives</li>
+    <li>Annexes</li>
+  </ol>
+</div>
+
+<!-- ============ 1. CANDIDAT ============ -->
+<div class="section">
+<h1>1. Présentation du candidat</h1>
+<div class="callout warn">
+<strong>À compléter par le candidat.</strong> Cette section doit rester personnelle : parcours, formation suivie,
+expériences précédentes, motivation pour le développement web, ce qui a conduit au choix de ce projet précis.
+Un dossier crédible aux yeux du jury est un dossier que le candidat peut défendre avec ses propres mots.
+</div>
+<p class="placeholder">[Parcours professionnel / scolaire avant la formation]</p>
+<p class="placeholder">[Nom de la formation, organisme, dates]</p>
+<p class="placeholder">[Motivations personnelles pour ce métier et pour ce projet en particulier — le lien avec le
+modding de jeux vidéo, une pratique déjà expérimentée par le candidat, est un bon axe à développer]</p>
+</div>
+
+<!-- ============ 2. PROJET ============ -->
+<div class="section">
+<h1>2. Présentation du projet</h1>
+
+<h2>2.1 Contexte et origine</h2>
+<p>ModHub est une plateforme communautaire permettant à des créateurs de mods pour jeux vidéo de publier leurs
+créations (avec gestion de versions et changelog), et à la communauté de les découvrir, les noter, les commenter
+et suivre leurs mises à jour. Le projet part d'un constat simple : les communautés de modding s'organisent souvent
+autour d'outils génériques (forums, Discord, plateformes tierces) mal adaptés au suivi structuré d'un mod dans la
+durée — versions, compatibilité, retours qualitatifs de la communauté.</p>
+<p class="placeholder">[À personnaliser : décrire ici l'expérience concrète du candidat dans le modding — par
+exemple le travail réalisé sur des mods Arma Reforger — qui légitime le choix de ce sujet]</p>
+
+<h2>2.2 Objectifs et public visé</h2>
+<table>
+<tr><th>Public</th><th>Besoin</th></tr>
+<tr><td>Créateurs de mods</td><td>Publier un mod, gérer ses versions, suivre son adoption (téléchargements, notes)</td></tr>
+<tr><td>Joueurs / communauté</td><td>Trouver rapidement des mods pertinents, évaluer leur qualité avant de les
+installer, suivre les mods qui les intéressent</td></tr>
+<tr><td>Modérateurs</td><td>Garder un catalogue de qualité en validant les publications avant diffusion publique</td></tr>
+</table>
+
+<h2>2.3 Fonctionnalités</h2>
+<ul>
+<li>Catalogue public avec recherche et filtres (par jeu, catégorie)</li>
+<li>Fiche mod détaillée : description, versions/changelog, métadonnées spécifiques au jeu, notes, commentaires</li>
+<li>Comptes utilisateurs avec rôles (utilisateur / administrateur)</li>
+<li>Espace créateur : publication de mods, ajout de versions</li>
+<li>Notation et commentaires communautaires</li>
+<li>Suivi de mods (follow) et fil d'activité personnalisé</li>
+<li>Modération administrateur (validation / rejet des publications)</li>
+</ul>
+</div>
+
+<!-- ============ 3. GESTION DE PROJET ============ -->
+<div class="section">
+<h1>3. Gestion de projet</h1>
+<h2>3.1 Méthodologie</h2>
+<p>Le développement a suivi une démarche en phases successives, inspirée des principes agiles adaptés à un projet
+solo : cadrage du besoin, choix d'architecture documenté avant l'implémentation, découpage en tranches verticales
+livrables (d'abord l'authentification de bout en bout, puis le cœur métier des mods, puis le front-end, puis le
+durcissement sécurité), avec vérification systématique à chaque étape plutôt qu'une phase de test globale en fin de
+projet.</p>
+
+<h2>3.2 Outils</h2>
+<table>
+<tr><th>Besoin</th><th>Outil</th></tr>
+<tr><td>Gestion de version</td><td>Git, dépôt hébergé sur GitHub</td></tr>
+<tr><td>Hébergement base relationnelle (développement)</td><td>Supabase (PostgreSQL managé)</td></tr>
+<tr><td>Base NoSQL (développement)</td><td>MongoDB local</td></tr>
+<tr><td>Tests</td><td>Vitest + Supertest (tests d'intégration)</td></tr>
+<tr><td>Suivi de tâches</td><td class="placeholder">[à compléter si un outil type Trello/Notion a été utilisé]</td></tr>
+</table>
+
+<h2>3.3 Planning</h2>
+<p class="placeholder">[À compléter : dates réelles de démarrage/livraison, éventuellement un diagramme de Gantt
+simplifié si le centre de formation l'exige]</p>
+</div>
+
+<!-- ============ 4. ARCHITECTURE ============ -->
+<div class="section">
+<h1>4. Architecture et choix techniques</h1>
+
+<h2>4.1 Vue d'ensemble</h2>
+<p>L'application est structurée en deux projets distincts communiquant via une API REST :</p>
+<pre>ModHub/
+├── frontend/   React 19 + TypeScript (Vite) — interface utilisateur
+├── backend/    Node.js + Express 5 + TypeScript — API REST
+│   ├── PostgreSQL (Prisma 7)  → données relationnelles
+│   └── MongoDB (Mongoose)     → fil d'activité, métadonnées par jeu
+└── README.md</pre>
+
+<p>Le backend suit une architecture en couches strictes, qui isole clairement chaque responsabilité et rend la
+compétence "accès aux données" repérable indépendamment de la logique métier :</p>
+<pre>Requête HTTP
+   │
+   ▼
+routes/          → déclaration des routes Express, middlewares (auth, rôles)
+   │
+   ▼
+controllers/     → validation des entrées (zod), (dé)sérialisation HTTP
+   │
+   ▼
+services/        → logique métier pure (règles, calculs, orchestration)
+   │
+   ▼
+repositories/    → accès aux données, séparés par technologie
+   ├── sql/      → Prisma / PostgreSQL
+   └── nosql/    → Mongoose / MongoDB</pre>
+
+<div class="callout info">
+Un service métier (<code class="inline">mod.service.ts</code>) appelle indifféremment un repository SQL et un
+repository NoSQL sans connaître le détail de leur implémentation : c'est cette séparation qui permet de démontrer
+proprement les deux compétences d'accès aux données sans qu'elles ne se mélangent dans le code.
+</div>
+
+<h2>4.2 Modèle de données</h2>
+<h3>4.2.1 PostgreSQL — schéma relationnel</h3>
+<p>Sept tables, avec clés étrangères et contraintes d'unicité pour garantir l'intégrité (une note = un couple
+utilisateur/mod unique, suppression en cascade des données dépendantes d'un mod supprimé) :</p>
+<pre>User (id, email UNIQUE, passwordHash, displayName, role, createdAt)
+Category (id, name UNIQUE, slug UNIQUE)
+Mod (id, title, slug UNIQUE, summary, description, gameKey, status, authorId → User, categoryId → Category)
+Version (id, modId → Mod, versionLabel, changelog, fileUrl, fileSizeBytes, downloadCount)
+   UNIQUE(modId, versionLabel)
+Rating (id, modId → Mod, userId → User, value)         UNIQUE(modId, userId)
+Comment (id, modId → Mod, userId → User, body, createdAt)
+Follow (id, modId → Mod, userId → User)                 UNIQUE(modId, userId)</pre>
+
+<h3>4.2.2 MongoDB — collections</h3>
+<table>
+<tr><th>Collection</th><th>Usage</th><th>Pourquoi NoSQL plutôt que relationnel</th></tr>
+<tr><td><code class="inline">ActivityEvent</code></td><td>Fil d'activité (nouveau mod, nouvelle version, nouveau
+commentaire)</td><td>La forme du document varie selon le type d'événement (<code class="inline">payload</code>
+différent pour chaque <code class="inline">type</code>) ; écriture fréquente, pas de besoin de jointure</td></tr>
+<tr><td><code class="inline">ModMetadata</code></td><td>Champs spécifiques à chaque jeu (ex. identifiant Workshop
+et DLC requis pour un mod Arma Reforger, version du moteur et loader pour un mod Minecraft)</td><td>Schéma
+volontairement variable selon <code class="inline">gameKey</code> — le modéliser en relationnel imposerait un
+anti-pattern de type EAV (Entity-Attribute-Value)</td></tr>
+</table>
+
+<h2>4.3 Justification des choix technologiques</h2>
+<table>
+<tr><th>Choix</th><th>Justification</th></tr>
+<tr><td>React + TypeScript</td><td>Typage statique de bout en bout (partagé conceptuellement entre les types
+d'API et les composants), écosystème très documenté, adapté à une interface fortement interactive</td></tr>
+<tr><td>Express 5</td><td>Minimaliste, laisse le contrôle total sur l'architecture (pas de convention imposée
+type NestJS), gestion native des erreurs asynchrones (une exception levée dans un contrôleur <code
+class="inline">async</code> est automatiquement transmise au middleware d'erreur, sans bloc try/catch répétitif)</td></tr>
+<tr><td>Prisma</td><td>Requêtes typées de bout en bout, migrations versionnées et rejouables, lisibilité du schéma
+comme documentation vivante de la base</td></tr>
+<tr><td>PostgreSQL (Supabase)</td><td>Base relationnelle robuste, hébergement managé gratuit qui évite une
+dépendance à Docker/WSL2 indisponible sur la machine de développement</td></tr>
+<tr><td>MongoDB</td><td>Adapté aux deux cas d'usage identifiés (schéma variable, écriture d'événements),
+bibliothèque Mongoose mature pour la validation de schéma côté application</td></tr>
+<tr><td>JWT + bcryptjs</td><td>Authentification sans état côté serveur (scalable horizontalement), hachage de mot
+de passe avec coût réglable ; bcryptjs plutôt que bcrypt pour éviter une dépendance à compilation native</td></tr>
+</table>
+</div>
+
+<!-- ============ 5. BLOC 1 ============ -->
+<div class="section">
+<h1>5. Compétences — Bloc 1 : développer la partie front-end</h1>
+
+<div class="skill-block">
+<span class="badge-competence">Compétence</span>
+<h4>5.1 Maquetter des interfaces utilisateur web ou web mobile</h4>
+<p>Avant l'implémentation, les écrans principaux ont été maquettés en basse fidélité pour valider la structure de
+l'information (hiérarchie visuelle, zones d'action, parcours) indépendamment du rendu graphique final.</p>
+
+<div class="two-col">
+<div>
+<div class="wf-frame">
+  <div class="wf-nav">
+    <div class="wf-text" style="width:50px;height:11px;">ModHub</div>
+    <div class="wf-text" style="width:40px;height:9px;">Catalogue</div>
+    <div style="flex:1"></div>
+    <div class="wf-btn">Connexion</div>
+  </div>
+  <div style="padding:12px;">
+    <div style="display:flex;justify-content:space-between;">
+      <div class="wf-text" style="width:130px;height:16px;"></div>
+      <div class="wf-box" style="width:110px;height:14px;"></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px;">
+      <div class="wf-box" style="width:33%;height:70px;"></div>
+      <div class="wf-box" style="width:33%;height:70px;"></div>
+      <div class="wf-box" style="width:33%;height:70px;"></div>
+    </div>
+  </div>
+</div>
+<figcaption>Maquette basse fidélité — Catalogue</figcaption>
+</div>
+<div>
+<div class="wf-frame">
+  <div class="wf-nav"><div class="wf-text" style="width:50px;height:11px;">ModHub</div></div>
+  <div style="padding:12px;">
+    <div class="wf-text" style="width:150px;height:14px;margin-bottom:8px;"></div>
+    <div style="display:flex;gap:14px;">
+      <div style="flex:1;">
+        <div class="wf-box" style="width:100%;height:40px;margin-bottom:8px;"></div>
+        <div class="wf-box" style="width:100%;height:30px;"></div>
+      </div>
+      <div style="width:70px;">
+        <div class="wf-btn" style="margin-bottom:4px;">★★★★★</div>
+        <div class="wf-btn">Suivre</div>
+      </div>
+    </div>
+  </div>
+</div>
+<figcaption>Maquette basse fidélité — Fiche mod</figcaption>
+</div>
+</div>
+
+<div class="callout">
+Ces maquettes ont été formalisées à un niveau volontairement schématique (boîtes grisées, pas de contenu réel)
+pour se concentrer sur la disposition avant de passer à l'intégration. <span class="placeholder">Pour l'entretien
+technique, il est recommandé de reproduire ces maquettes dans un outil dédié (Figma) et d'expliquer les itérations
+éventuelles entre la maquette et le résultat final.</span>
+</div>
+</div>
+
+<div class="skill-block">
+<span class="badge-competence">Compétence</span>
+<h4>5.2 Réaliser des interfaces utilisateur statiques</h4>
+<p>L'habillage visuel repose sur une feuille de style unique (<code class="inml">index.css</code>) centralisant
+les jetons de couleur (variables CSS), sans framework CSS externe — choix assumé pour garder un contrôle total sur
+le rendu et éviter une dépendance supplémentaire sur un projet de cette taille.</p>
+<pre>:root {
+  --color-bg: #0f1115;
+  --color-surface: #171a21;
+  --color-accent: #5b8def;
+  --color-danger: #e0554f;
+  --color-success: #3fb27f;
+}</pre>
+<p>La mise en page utilise Flexbox et CSS Grid (<code class="inline">grid-template-columns:
+repeat(auto-fill, minmax(260px, 1fr))</code> pour la grille de mods), ce qui rend le catalogue responsive sans
+media query dédiée pour les tailles intermédiaires.</p>
+<figure>
+  <img src="screenshots/01-catalogue.png" alt="Capture du catalogue de mods">
+  <figcaption>Fig. 1 — Catalogue public, rendu réel de l'application (capture d'écran)</figcaption>
+</figure>
+</div>
+
+<div class="skill-block">
+<span class="badge-competence">Compétence</span>
+<h4>5.3 Développer la partie dynamique des interfaces utilisateur</h4>
+<p>Plusieurs mécanismes illustrent la partie dynamique de l'application :</p>
+<ul>
+<li><strong>Recherche en temps réel avec debounce</strong> — chaque frappe déclenche une nouvelle requête après
+300 ms d'inactivité, évitant de saturer l'API à chaque caractère tapé :</li>
+</ul>
+<pre>useEffect(() => {
+  const handle = setTimeout(() => {
+    setLoading(true);
+    modsApi.search({ q: query || undefined })
+      .then((res) => setItems(res.items))
+      .finally(() => setLoading(false));
+  }, 300);
+  return () => clearTimeout(handle);
+}, [query]);</pre>
+<ul>
+<li><strong>Contexte d'authentification global</strong> (React Context + hook <code class="inline">useAuth</code>)
+qui persiste la session en <code class="inline">localStorage</code> et pilote l'affichage conditionnel de la
+navigation (liens "Publier un mod", "Modération" visibles seulement selon l'état de connexion et le rôle).</li>
+<li><strong>Routes protégées</strong> (<code class="inline">ProtectedRoute</code>) redirigeant vers la page de
+connexion si l'utilisateur n'est pas authentifié, ou vers l'accueil si son rôle ne correspond pas à la page
+demandée (ex. un utilisateur non admin ne peut pas accéder à <code class="inline">/admin</code>).</li>
+<li><strong>Formulaires contrôlés</strong> avec retour d'erreur asynchrone affiché sans rechargement de page
+(inscription, connexion, publication de mod, notation, commentaire).</li>
+</ul>
+<figure>
+  <img src="screenshots/02-mod-detail.png" alt="Capture de la fiche mod">
+  <figcaption>Fig. 2 — Fiche mod : métadonnées, versions et commentaires assemblés dynamiquement depuis deux
+  sources de données différentes (PostgreSQL + MongoDB)</figcaption>
+</figure>
+</div>
+</div>
+
+<!-- ============ 6. BLOC 2 ============ -->
+<div class="section">
+<h1>6. Compétences — Bloc 2 : développer la partie back-end</h1>
+
+<div class="skill-block">
+<span class="badge-competence">Compétence</span>
+<h4>6.1 Mettre en place une base de données relationnelle</h4>
+<p>Le schéma PostgreSQL est défini et versionné via Prisma (<code class="inline">prisma/schema.prisma</code>),
+avec migrations SQL générées et historisées dans <code class="inline">prisma/migrations/</code>. Extrait :</p>
+<pre>model Mod {
+  id          String    @id @default(uuid())
+  title       String
+  slug        String    @unique
+  status      ModStatus @default(PENDING)
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id])
+  versions    Version[]
+  ratings     Rating[]
+  @@index([gameKey])
+  @@index([status])
+}</pre>
+<p>Les contraintes d'unicité composites (<code class="inline">@@unique([modId, userId])</code> sur
+<code class="inline">Rating</code> et <code class="inline">Follow</code>) garantissent au niveau base de données
+qu'un utilisateur ne peut noter ou suivre un mod qu'une seule fois, sans dépendre uniquement d'une vérification
+applicative.</p>
+</div>
+
+<div class="skill-block">
+<span class="badge-competence">Compétence</span>
+<h4>6.2 Développer des composants d'accès aux données SQL et NoSQL</h4>
+<p>Deux jeux de repositories cohabitent, chacun encapsulant sa technologie :</p>
+<pre>// repositories/sql/mod.repository.ts — Prisma / PostgreSQL
+search(filters, skip, take) {
+  const where: Prisma.ModWhereInput = {
+    status: filters.status ?? 'APPROVED',
+    ...(filters.search && { OR: [
+      { title:   { contains: filters.search, mode: 'insensitive' } },
+      { summary: { contains: filters.search, mode: 'insensitive' } },
+    ]}),
+  };
+  return prisma.$transaction([
+    prisma.mod.findMany({ where, skip, take, orderBy: { createdAt: 'desc' } }),
+    prisma.mod.count({ where }),
+  ]);
+}</pre>
+<pre>// repositories/nosql/activity.repository.ts — Mongoose / MongoDB
+setMetadata(modId, gameKey, fields) {
+  return ModMetadataModel.findOneAndUpdate(
+    { modId },
+    { modId, gameKey, fields },
+    { upsert: true, returnDocument: 'after' },
+  );
+}</pre>
+<p>Le service métier orchestre les deux sans les mélanger : la création d'un mod écrit l'entité principale en
+PostgreSQL puis, si des métadonnées spécifiques au jeu sont fournies, les stocke séparément en MongoDB et
+journalise l'événement dans le fil d'activité :</p>
+<pre>async createMod(authorId, input) {
+  const mod = await modRepository.create({ ...input, author: { connect: { id: authorId } } });
+  if (input.gameMetadata) {
+    await activityRepository.setMetadata(mod.id, input.gameKey, input.gameMetadata);
+  }
+  await activityRepository.record('NEW_MOD', mod.id, authorId, { title: mod.title });
+  return mod;
+}</pre>
+<div class="callout">
+Ce comportement est couvert par un test d'intégration réel (<code class="inline">tests/mods.test.ts</code>) qui
+crée un mod via l'API, puis vérifie directement en base que le document MongoDB correspondant existe avec les
+bons champs — la preuve que les deux bases sont réellement utilisées, pas seulement déclarées dans le schéma.
+</div>
+</div>
+
+<div class="skill-block">
+<span class="badge-competence">Compétence</span>
+<h4>6.3 Développer des composants métier côté serveur</h4>
+<p>La couche <code class="inline">services/</code> concentre les règles métier, par exemple le contrôle de
+propriété avant l'ajout d'une version :</p>
+<pre>async addVersion(modId, authorId, input) {
+  const mod = await modRepository.findById(modId);
+  if (!mod) throw new AppError(404, 'Mod introuvable');
+  if (mod.authorId !== authorId) {
+    throw new AppError(403, "Seul l'auteur du mod peut publier une version");
+  }
+  const version = await modRepository.addVersion(modId, input);
+  await activityRepository.record('NEW_VERSION', modId, authorId, { versionLabel: version.versionLabel });
+  return version;
+}</pre>
+<p>Autres composants métier notables : calcul de moyenne de notes via agrégation Prisma
+(<code class="inline">prisma.rating.aggregate</code>), génération de slugs uniques avec normalisation Unicode
+(suppression des accents), workflow de modération à trois états (<code class="inline">PENDING → APPROVED /
+REJECTED</code>) contrôlé par le rôle de l'utilisateur.</p>
+</div>
+</div>
+
+<!-- ============ 7. SÉCURITÉ ============ -->
+<div class="section">
+<h1>7. Sécurisation de l'application</h1>
+<table>
+<tr><th>Risque (OWASP)</th><th>Mesure appliquée</th></tr>
+<tr><td>Injection SQL</td><td>Aucune requête SQL brute concaténée ; toutes les requêtes passent par l'API
+typée de Prisma (requêtes paramétrées par construction)</td></tr>
+<tr><td>Injection NoSQL</td><td>Les requêtes Mongoose utilisent l'API objet du driver, jamais de construction de
+requête à partir d'une chaîne fournie par l'utilisateur</td></tr>
+<tr><td>Mots de passe</td><td>Hachage bcryptjs (12 rounds), jamais stocké ni renvoyé en clair ; le message
+d'erreur de connexion est identique pour "email inconnu" et "mot de passe incorrect" (évite l'énumération de
+comptes)</td></tr>
+<tr><td>Autorisation</td><td>Vérification de propriété et de rôle systématique côté service (pas seulement côté
+route) ; ex. modération réservée au rôle <code class="inline">ADMIN</code> via middleware
+<code class="inline">requireRole</code></td></tr>
+<tr><td>Fuite d'information</td><td>Middleware d'erreur centralisé : toute erreur non prévue renvoie un message
+générique au client, la stack trace complète n'est journalisée que côté serveur</td></tr>
+<tr><td>Brute force / credential stuffing</td><td>Limitation de débit (<code class="inline">express-rate-limit</code>,
+20 requêtes / 15 min) sur les routes d'authentification</td></tr>
+<tr><td>CORS</td><td>Origine restreinte à l'URL du front-end configurée en variable d'environnement, plutôt
+qu'une politique ouverte à tout domaine</td></tr>
+<tr><td>Exposition de données via Supabase</td><td>Row Level Security activée sur les sept tables PostgreSQL
+(l'accès applicatif passe par le rôle propriétaire via Prisma, qui n'est pas soumis à RLS ; sans policy, l'accès
+via la clé publique Supabase est donc refusé par défaut)</td></tr>
+<tr><td>Secrets</td><td>Aucun secret commité : <code class="inline">.env</code> exclu du dépôt, seul
+<code class="inline">.env.example</code> (valeurs factices) est versionné</td></tr>
+</table>
+<div class="callout warn">
+<strong>Limite connue et assumée :</strong> l'ajout d'une version de mod accepte pour l'instant une URL de fichier
+fournie par le créateur plutôt qu'un véritable upload (la bibliothèque <code class="inline">multer</code> est
+installée mais pas encore branchée). C'est un choix de périmètre pour la durée du projet, à mentionner en
+perspective d'évolution plutôt qu'à présenter comme un oubli.
+</div>
+</div>
+
+<!-- ============ 8. TESTS ============ -->
+<div class="section">
+<h1>8. Tests</h1>
+<p>La stratégie retenue privilégie des <strong>tests d'intégration bout-en-bout</strong> plutôt que des tests
+unitaires isolés avec mocks : chaque test démarre l'application réelle (<code class="inline">createApp()</code>)
+et l'exerce via des requêtes HTTP (Supertest) contre les vraies bases de données de développement, puis nettoie
+les données créées. Ce choix donne une confiance plus directe que le système fonctionne réellement de bout en
+bout, au prix d'une exécution un peu plus lente qu'avec des mocks.</p>
+<pre>it('crée un mod (Postgres) et enregistre ses métadonnées jeu (Mongo)', async () => {
+  const res = await request(app).post('/api/mods')
+    .set('Authorization', `Bearer ${token}`)
+    .send({ title: '...', gameKey: 'arma-reforger', gameMetadata: { workshopId: 'RMM-001' } });
+
+  expect(res.status).toBe(201);
+  const metadata = await ModMetadataModel.findOne({ modId: res.body.id }).lean();
+  expect(metadata?.fields.workshopId).toBe('RMM-001');
+});</pre>
+<table>
+<tr><th>Suite</th><th>Couverture</th></tr>
+<tr><td><code class="inline">tests/auth.test.ts</code></td><td>Inscription (validation mot de passe, unicité
+email), connexion (identifiants valides/invalides)</td></tr>
+<tr><td><code class="inline">tests/mods.test.ts</code></td><td>Création de mod avec métadonnées croisées SQL/NoSQL,
+ajout de version, contrôle de propriété (rejet 403), lecture d'une fiche mod fusionnant les deux sources</td></tr>
+</table>
+<p><strong>Résultat</strong> : 9 tests, 9 succès, exécutés contre les environnements réels (Supabase + MongoDB).</p>
+</div>
+
+<!-- ============ 9. BILAN ============ -->
+<div class="section">
+<h1>9. Bilan et perspectives</h1>
+<h2>9.1 Difficultés rencontrées</h2>
+<ul>
+<li><strong>Absence de Docker fonctionnel</strong> sur la machine de développement (pas de distribution WSL2
+installée) : résolu en basculant PostgreSQL vers un hébergement Supabase gratuit et en découvrant qu'une instance
+MongoDB locale était déjà disponible en service Windows.</li>
+<li><strong>Changement d'API dans Prisma 7</strong> : la suppression de l'URL de connexion directement dans le
+schéma (remplacée par un adaptateur de driver + fichier de configuration séparé) a nécessité une vérification
+directe du comportement de l'outil plutôt qu'une hypothèse basée sur les versions précédentes.</li>
+<li><strong>Typage strict d'Express 5</strong> sur les paramètres de route (<code class="inline">string |
+string[]</code>) : traité par une fonction utilitaire de validation plutôt qu'un contournement de type.</li>
+</ul>
+<h2>9.2 Compétences mobilisées</h2>
+<p class="placeholder">[À personnaliser : lister les compétences que le candidat estime avoir le plus développées
+ou consolidées sur ce projet, en lien avec son parcours]</p>
+<h2>9.3 Perspectives d'évolution</h2>
+<ul>
+<li>Upload de fichiers réel pour les versions de mods (stockage objet)</li>
+<li>Notifications en temps réel (WebSocket) pour le fil d'activité plutôt qu'un chargement à la demande</li>
+<li>Système de tags libres en complément des catégories fixes</li>
+<li>Tests de bout en bout côté interface (Playwright) en complément des tests d'intégration API</li>
+</ul>
+</div>
+
+<!-- ============ 10. ANNEXES ============ -->
+<div class="section">
+<h1>10. Annexes</h1>
+<h2>10.1 Lexique</h2>
+<table>
+<tr><th>Terme</th><th>Définition</th></tr>
+<tr><td>ORM</td><td>Object-Relational Mapping — bibliothèque faisant correspondre les tables d'une base
+relationnelle à des objets manipulables dans le code (ici, Prisma)</td></tr>
+<tr><td>JWT</td><td>JSON Web Token — jeton signé transmettant l'identité et le rôle d'un utilisateur authentifié
+sans nécessiter de session stockée côté serveur</td></tr>
+<tr><td>EAV</td><td>Entity-Attribute-Value — anti-pattern relationnel consistant à stocker des attributs
+dynamiques ligne par ligne plutôt qu'en colonnes, évité ici grâce au NoSQL</td></tr>
+<tr><td>RLS</td><td>Row Level Security — mécanisme PostgreSQL restreignant l'accès aux lignes d'une table selon
+le rôle de connexion</td></tr>
+</table>
+<h2>10.2 Sources et ressources</h2>
+<ul>
+<li>Dépôt du projet : <a href="https://github.com/Maximus04200/ModHub">github.com/Maximus04200/ModHub</a></li>
+<li>Documentation officielle Prisma, Express, React, MongoDB/Mongoose</li>
+</ul>
+</div>
+
+</body>
+</html>
