@@ -65,9 +65,9 @@
   <div class="subtitle">Plateforme communautaire de partage de mods pour jeux vidéo</div>
   <div class="meta">
     Dossier de projet<br>
-    <span class="placeholder">[Prénom NOM du candidat]</span><br>
-    <span class="placeholder">[Nom du centre de formation]</span><br>
-    Session <span class="placeholder">[date de la session d'examen]</span>
+    Martin DI NOTA<br>
+    CEF<br>
+    Session — Examen blanc
   </div>
 </div>
 
@@ -75,7 +75,7 @@
 <div class="toc">
   <h1>Sommaire</h1>
   <ol>
-    <li>Présentation du candidat <span class="placeholder">à compléter</span></li>
+    <li>Présentation du candidat</li>
     <li>Présentation du projet
       <ol type="a"><li>Contexte et origine</li><li>Objectifs et public visé</li><li>Fonctionnalités</li></ol>
     </li>
@@ -99,15 +99,25 @@
 <!-- ============ 1. CANDIDAT ============ -->
 <div class="section">
 <h1>1. Présentation du candidat</h1>
-<div class="callout warn">
-<strong>À compléter par le candidat.</strong> Cette section doit rester personnelle : parcours, formation suivie,
-expériences précédentes, motivation pour le développement web, ce qui a conduit au choix de ce projet précis.
-Un dossier crédible aux yeux du jury est un dossier que le candidat peut défendre avec ses propres mots.
-</div>
-<p class="placeholder">[Parcours professionnel / scolaire avant la formation]</p>
-<p class="placeholder">[Nom de la formation, organisme, dates]</p>
-<p class="placeholder">[Motivations personnelles pour ce métier et pour ce projet en particulier — le lien avec le
-modding de jeux vidéo, une pratique déjà expérimentée par le candidat, est un bon axe à développer]</p>
+
+<h2>1.1 Mon parcours</h2>
+<p>Je m'appelle Martin Di Nota. Avant de me lancer dans le développement web, j'ai passé un CAP serveur et
+travaillé dans la restauration. J'ai ensuite été cariste, puis plaquiste. Ce sont des métiers très éloignés du
+numérique, mais ils m'ont appris à tenir un rythme, à être fiable sur ce qu'on me confie et à travailler avec des
+équipes et des clients très différents. Je retrouve ces habitudes dans la façon dont je développe : avancer étape
+par étape et vérifier ce que je livre.</p>
+
+<h2>1.2 Ma formation</h2>
+<p>Je prépare le titre professionnel Développeur Web et Web Mobile au CEF. ModHub est le projet que j'ai
+construit pour couvrir les compétences du référentiel dans le cadre de cet examen blanc.</p>
+
+<h2>1.3 Ce qui me motive</h2>
+<p>Ce qui me plaît dans ce métier, c'est de pouvoir créer des choses nouvelles qui servent à tout type de
+personne. J'ai envie d'aider les gens avec des outils que je fabrique moi-même. Quand j'ai une idée, je ne veux
+plus dépendre de quelqu'un d'autre pour la réaliser : apprendre à développer, c'est gagner cette autonomie et
+pouvoir donner vie à mes idées, de la base de données jusqu'à l'écran.</p>
+<p>Le choix de ModHub vient aussi de là. Je fais du modding sur Arma Reforger, et j'ai vu de près ce que les
+créateurs de mods et les joueurs cherchent : un endroit clair pour publier, trouver et suivre des mods.</p>
 </div>
 
 <!-- ============ 2. PROJET ============ -->
@@ -115,13 +125,16 @@ modding de jeux vidéo, une pratique déjà expérimentée par le candidat, est 
 <h1>2. Présentation du projet</h1>
 
 <h2>2.1 Contexte et origine</h2>
-<p>ModHub est une plateforme communautaire permettant à des créateurs de mods pour jeux vidéo de publier leurs
-créations (avec gestion de versions et changelog), et à la communauté de les découvrir, les noter, les commenter
-et suivre leurs mises à jour. Le projet part d'un constat simple : les communautés de modding s'organisent souvent
-autour d'outils génériques (forums, Discord, plateformes tierces) mal adaptés au suivi structuré d'un mod dans la
-durée — versions, compatibilité, retours qualitatifs de la communauté.</p>
-<p class="placeholder">[À personnaliser : décrire ici l'expérience concrète du candidat dans le modding — par
-exemple le travail réalisé sur des mods Arma Reforger — qui légitime le choix de ce sujet]</p>
+<p>ModHub est une plateforme où les créateurs de mods pour jeux vidéo publient leurs créations, avec leurs
+versions et leur changelog, et où la communauté peut les découvrir, les noter, les commenter et suivre leurs mises
+à jour. Je suis parti d'un constat : les communautés de modding s'organisent surtout sur des forums, des serveurs
+Discord ou des sites tiers, qui ne sont pas faits pour suivre un mod dans la durée (versions, compatibilité,
+retours des joueurs).</p>
+<p>Je fais moi-même du modding sur Arma Reforger (moteur Enfusion, langage EnforceScript). J'ai notamment corrigé
+des comportements du jeu de base, par exemple une limite de véhicules qui n'était pas appliquée quand on plaçait
+les véhicules depuis l'éditeur, et j'ai réalisé un mod qui alimente un site de statistiques pour les joueurs. J'ai
+donc vu de l'intérieur ce dont un créateur a besoin : publier une version, savoir si elle est utilisée, recevoir
+des retours. C'est de là qu'est venue l'idée de ModHub.</p>
 
 <h2>2.2 Objectifs et public visé</h2>
 <table>
@@ -148,11 +161,9 @@ installer, suivre les mods qui les intéressent</td></tr>
 <div class="section">
 <h1>3. Gestion de projet</h1>
 <h2>3.1 Méthodologie</h2>
-<p>Le développement a suivi une démarche en phases successives, inspirée des principes agiles adaptés à un projet
-solo : cadrage du besoin, choix d'architecture documenté avant l'implémentation, découpage en tranches verticales
-livrables (d'abord l'authentification de bout en bout, puis le cœur métier des mods, puis le front-end, puis le
-durcissement sécurité), avec vérification systématique à chaque étape plutôt qu'une phase de test globale en fin de
-projet.</p>
+<p>Je suis parti du besoin, puis j'ai fixé l'architecture avant d'écrire du code. J'ai ensuite avancé par
+tranches complètes et utilisables : d'abord l'authentification de bout en bout, puis le cœur métier des mods, puis
+l'interface, puis la sécurité. Je vérifiais chaque tranche au fur et à mesure au lieu de tout tester à la fin.</p>
 
 <h2>3.2 Outils</h2>
 <table>
@@ -161,12 +172,13 @@ projet.</p>
 <tr><td>Hébergement base relationnelle (développement)</td><td>Supabase (PostgreSQL managé)</td></tr>
 <tr><td>Base NoSQL (développement)</td><td>MongoDB local</td></tr>
 <tr><td>Tests</td><td>Vitest + Supertest (tests d'intégration)</td></tr>
-<tr><td>Suivi de tâches</td><td class="placeholder">[à compléter si un outil type Trello/Notion a été utilisé]</td></tr>
+<tr><td>Suivi de tâches</td><td>Jalons suivis via l'historique des commits Git (une tranche verticale livrable par commit)</td></tr>
 </table>
 
 <h2>3.3 Planning</h2>
-<p class="placeholder">[À compléter : dates réelles de démarrage/livraison, éventuellement un diagramme de Gantt
-simplifié si le centre de formation l'exige]</p>
+<p>J'ai réalisé le projet en 3 jours, du 12 au 14 septembre 2026, dans le cadre de l'examen blanc. Le travail
+est découpé en quatre tranches livrables, chacune correspondant à un commit Git : mise en place du projet et
+authentification, cœur métier des mods (PostgreSQL + MongoDB), interface, puis renforcement de la sécurité.</p>
 </div>
 
 <!-- ============ 4. ARCHITECTURE ============ -->
@@ -174,7 +186,7 @@ simplifié si le centre de formation l'exige]</p>
 <h1>4. Architecture et choix techniques</h1>
 
 <h2>4.1 Vue d'ensemble</h2>
-<p>L'application est structurée en deux projets distincts communiquant via une API REST :</p>
+<p>L'application est composée de deux projets distincts qui communiquent par une API REST :</p>
 <pre>ModHub/
 ├── frontend/   React 19 + TypeScript (Vite) — interface utilisateur
 ├── backend/    Node.js + Express 5 + TypeScript — API REST
@@ -182,8 +194,8 @@ simplifié si le centre de formation l'exige]</p>
 │   └── MongoDB (Mongoose)     → fil d'activité, métadonnées par jeu
 └── README.md</pre>
 
-<p>Le backend suit une architecture en couches strictes, qui isole clairement chaque responsabilité et rend la
-compétence "accès aux données" repérable indépendamment de la logique métier :</p>
+<p>Le backend est organisé en couches. Chaque couche a un seul rôle, ce qui sépare l'accès aux données de la
+logique métier :</p>
 <pre>Requête HTTP
    │
    ▼
@@ -201,9 +213,9 @@ repositories/    → accès aux données, séparés par technologie
    └── nosql/    → Mongoose / MongoDB</pre>
 
 <div class="callout info">
-Un service métier (<code class="inline">mod.service.ts</code>) appelle indifféremment un repository SQL et un
-repository NoSQL sans connaître le détail de leur implémentation : c'est cette séparation qui permet de démontrer
-proprement les deux compétences d'accès aux données sans qu'elles ne se mélangent dans le code.
+Le service métier (<code class="inline">mod.service.ts</code>) appelle un repository SQL et un repository
+NoSQL sans savoir comment chacun fonctionne. Grâce à cette séparation, le code SQL et le code NoSQL restent
+chacun dans leur dossier et ne se mélangent pas.
 </div>
 
 <h2>4.2 Modèle de données</h2>
@@ -257,8 +269,9 @@ de passe avec coût réglable ; bcryptjs plutôt que bcrypt pour éviter une dé
 <div class="skill-block">
 <span class="badge-competence">Compétence</span>
 <h4>5.1 Maquetter des interfaces utilisateur web ou web mobile</h4>
-<p>Avant l'implémentation, les écrans principaux ont été maquettés en basse fidélité pour valider la structure de
-l'information (hiérarchie visuelle, zones d'action, parcours) indépendamment du rendu graphique final.</p>
+<p>J'ai schématisé les deux écrans principaux (catalogue et fiche mod) en basse fidélité, pour montrer la
+structure retenue : hiérarchie de l'information, zones d'action, parcours de l'utilisateur, sans se soucier du
+rendu graphique.</p>
 
 <div class="two-col">
 <div>
@@ -305,19 +318,17 @@ l'information (hiérarchie visuelle, zones d'action, parcours) indépendamment d
 </div>
 
 <div class="callout">
-Ces maquettes ont été formalisées à un niveau volontairement schématique (boîtes grisées, pas de contenu réel)
-pour se concentrer sur la disposition avant de passer à l'intégration. <span class="placeholder">Pour l'entretien
-technique, il est recommandé de reproduire ces maquettes dans un outil dédié (Figma) et d'expliquer les itérations
-éventuelles entre la maquette et le résultat final.</span>
+Ces maquettes sont volontairement simples (boîtes grisées, pas de contenu réel) : elles servent à fixer la
+disposition. Le rendu final de ces écrans est visible dans les captures d'écran de la suite du dossier.
 </div>
 </div>
 
 <div class="skill-block">
 <span class="badge-competence">Compétence</span>
 <h4>5.2 Réaliser des interfaces utilisateur statiques</h4>
-<p>L'habillage visuel repose sur une feuille de style unique (<code class="inml">index.css</code>) centralisant
-les jetons de couleur (variables CSS), sans framework CSS externe — choix assumé pour garder un contrôle total sur
-le rendu et éviter une dépendance supplémentaire sur un projet de cette taille.</p>
+<p>Toute la mise en forme est dans une seule feuille de style (<code class="inline">index.css</code>), avec les
+couleurs définies une fois pour toutes sous forme de variables CSS. Je n'ai pas utilisé de framework CSS : sur un
+projet de cette taille, je préfère garder la maîtrise du rendu et éviter une dépendance de plus.</p>
 <pre>:root {
   --color-bg: #0f1115;
   --color-surface: #171a21;
@@ -337,7 +348,7 @@ media query dédiée pour les tailles intermédiaires.</p>
 <div class="skill-block">
 <span class="badge-competence">Compétence</span>
 <h4>5.3 Développer la partie dynamique des interfaces utilisateur</h4>
-<p>Plusieurs mécanismes illustrent la partie dynamique de l'application :</p>
+<p>Voici les principaux mécanismes dynamiques de l'application :</p>
 <ul>
 <li><strong>Recherche en temps réel avec debounce</strong> — chaque frappe déclenche une nouvelle requête après
 300 ms d'inactivité, évitant de saturer l'API à chaque caractère tapé :</li>
@@ -492,21 +503,20 @@ via la clé publique Supabase est donc refusé par défaut)</td></tr>
 <code class="inline">.env.example</code> (valeurs factices) est versionné</td></tr>
 </table>
 <div class="callout warn">
-<strong>Limite connue et assumée :</strong> l'ajout d'une version de mod accepte pour l'instant une URL de fichier
-fournie par le créateur plutôt qu'un véritable upload (la bibliothèque <code class="inline">multer</code> est
-installée mais pas encore branchée). C'est un choix de périmètre pour la durée du projet, à mentionner en
-perspective d'évolution plutôt qu'à présenter comme un oubli.
+<strong>Limite connue :</strong> pour l'instant, l'ajout d'une version de mod prend une URL de fichier fournie
+par le créateur, pas un vrai envoi de fichier (la bibliothèque <code class="inline">multer</code> est installée
+mais pas encore branchée). Je l'ai laissé de côté pour tenir le délai de 3 jours, et c'est la première évolution
+que je ferais.
 </div>
 </div>
 
 <!-- ============ 8. TESTS ============ -->
 <div class="section">
 <h1>8. Tests</h1>
-<p>La stratégie retenue privilégie des <strong>tests d'intégration bout-en-bout</strong> plutôt que des tests
-unitaires isolés avec mocks : chaque test démarre l'application réelle (<code class="inline">createApp()</code>)
-et l'exerce via des requêtes HTTP (Supertest) contre les vraies bases de données de développement, puis nettoie
-les données créées. Ce choix donne une confiance plus directe que le système fonctionne réellement de bout en
-bout, au prix d'une exécution un peu plus lente qu'avec des mocks.</p>
+<p>J'ai choisi d'écrire des <strong>tests d'intégration</strong> plutôt que des tests unitaires avec des mocks :
+chaque test lance l'application réelle (<code class="inline">createApp()</code>), l'appelle en HTTP avec Supertest
+sur les vraies bases de développement, puis supprime ce qu'il a créé. C'est un peu plus lent, mais ça prouve que
+l'application fonctionne vraiment de bout en bout.</p>
 <pre>it('crée un mod (Postgres) et enregistre ses métadonnées jeu (Mongo)', async () => {
   const res = await request(app).post('/api/mods')
     .set('Authorization', `Bearer ${token}`)
@@ -523,7 +533,7 @@ email), connexion (identifiants valides/invalides)</td></tr>
 <tr><td><code class="inline">tests/mods.test.ts</code></td><td>Création de mod avec métadonnées croisées SQL/NoSQL,
 ajout de version, contrôle de propriété (rejet 403), lecture d'une fiche mod fusionnant les deux sources</td></tr>
 </table>
-<p><strong>Résultat</strong> : 9 tests, 9 succès, exécutés contre les environnements réels (Supabase + MongoDB).</p>
+<p><strong>Résultat</strong> : 9 tests, 9 succès lors de la dernière exécution complète (12/09/2026), contre les bases réelles (Supabase + MongoDB).</p>
 </div>
 
 <!-- ============ 9. BILAN ============ -->
@@ -541,8 +551,16 @@ directe du comportement de l'outil plutôt qu'une hypothèse basée sur les vers
 string[]</code>) : traité par une fonction utilitaire de validation plutôt qu'un contournement de type.</li>
 </ul>
 <h2>9.2 Compétences mobilisées</h2>
-<p class="placeholder">[À personnaliser : lister les compétences que le candidat estime avoir le plus développées
-ou consolidées sur ce projet, en lien avec son parcours]</p>
+<ul>
+<li>Concevoir une API en couches (routes, contrôleurs, services, repositories) et séparer l'accès aux données
+SQL et NoSQL</li>
+<li>Modéliser une base relationnelle avec Prisma : clés étrangères, contraintes d'unicité, migrations</li>
+<li>Sécuriser une API : authentification JWT, contrôle des rôles et de la propriété, limitation de débit</li>
+<li>Construire une interface React typée avec authentification et routes protégées</li>
+<li>Lire la documentation quand un outil change (Prisma 7) plutôt que de supposer</li>
+</ul>
+<p>Au-delà de la technique, ce projet m'a appris à découper un gros travail en étapes que je peux vérifier
+une par une.</p>
 <h2>9.3 Perspectives d'évolution</h2>
 <ul>
 <li>Upload de fichiers réel pour les versions de mods (stockage objet)</li>
