@@ -245,3 +245,31 @@ select {
 .status--pending {
   color: var(--color-muted);
 }
+
+@media (max-width: 640px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .navbar__links {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .container {
+    padding: 16px 12px 48px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mod-grid {
+    grid-template-columns: 1fr;
+  }
+}

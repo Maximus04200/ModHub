@@ -13,26 +13,28 @@
     font-size: 13px;
     margin: 0;
   }
-  h1, h2, h3, h4 { color: #14213d; font-family: 'Segoe UI', Arial, sans-serif; }
+  h1, h2, h3, h4, h5 { color: #14213d; font-family: 'Segoe UI', Arial, sans-serif; }
   h1 { font-size: 24px; border-bottom: 3px solid #5b8def; padding-bottom: 8px; margin-top: 0; }
   h2 { font-size: 18px; margin-top: 34px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
   h3 { font-size: 15px; color: #2a5cae; margin-top: 22px; }
   h4 { font-size: 13.5px; margin-top: 16px; }
+  h5 { font-size: 12px; margin: 0; }
   .section { page-break-before: always; }
   .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 240mm; text-align: center; }
   .cover .tag { background: #5b8def; color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; }
   .cover h1 { border: none; font-size: 40px; margin-bottom: 6px; }
   .cover .subtitle { font-size: 16px; color: #555; margin-bottom: 60px; }
   .cover .meta { font-size: 13px; color: #444; margin-top: 80px; line-height: 2; }
-  .placeholder { background: #fff4e5; border: 1px dashed #e0a94f; color: #8a5c15; padding: 3px 8px; border-radius: 4px; font-size: 12px; }
   .toc { page-break-after: always; }
   .toc ol { line-height: 2.1; font-size: 14px; }
   .toc ol ol { font-size: 13px; color: #333; }
+  .toc-entry { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dotted #ccc; }
+  .toc-page { color: #666; font-size: 12px; white-space: nowrap; }
   table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 12px; }
   th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; vertical-align: top; }
   th { background: #eef2fb; }
   code, pre { font-family: 'Cascadia Code', Consolas, monospace; font-size: 11.5px; }
-  pre { background: #1c1e22; color: #e8e9ec; padding: 12px 14px; border-radius: 6px; overflow-x: auto; line-height: 1.5; }
+  pre { background: #1c1e22; color: #e8e9ec; padding: 12px 14px; border-radius: 6px; overflow-x: auto; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
   pre .c { color: #7f848e; }
   code.inline { background: #eef0f4; padding: 1px 5px; border-radius: 3px; }
   .callout { background: #eef6f0; border-left: 4px solid #3fb27f; padding: 10px 14px; margin: 14px 0; font-size: 12.5px; }
@@ -46,14 +48,26 @@
   .skill-block { border: 1px solid #d8dde6; border-radius: 8px; padding: 16px 18px; margin: 18px 0; background: #fbfcfe; }
   .skill-block h4 { margin-top: 0; color: #14213d; }
   .badge-competence { display: inline-block; background: #14213d; color: white; font-size: 10.5px; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
-  .two-col { display: flex; gap: 20px; }
-  .two-col > div { flex: 1; }
+  .two-col { display: flex; gap: 20px; flex-wrap: wrap; }
+  .two-col > div { flex: 1; min-width: 200px; }
+  .three-col { display: flex; gap: 16px; flex-wrap: wrap; }
+  .three-col > div { flex: 1; min-width: 150px; }
   .wf-frame { border: 2px solid #333; background: #fafafa; padding: 0; }
+  .wf-frame.mobile { max-width: 190px; margin: 0 auto; }
   .wf-nav { display: flex; align-items: center; gap: 14px; border-bottom: 2px solid #333; padding: 8px 12px; background: #eee; }
   .wf-box { border: 1px dashed #999; background: #fff; }
   .wf-text { background: #ddd; border-radius: 2px; }
   .wf-btn { border: 1px solid #333; background: #ccc; padding: 4px 10px; font-size: 10px; text-align:center; }
-  footer.page-footer { font-size: 10px; color: #888; text-align: center; margin-top: 40px; }
+  .zoning-frame { border: 2px solid #555; background: #fff; }
+  .zoning-zone { border: 2px dashed #5b8def; background: #eef2fb; color: #2a5cae; font-size: 10.5px; text-align: center; display: flex; align-items: center; justify-content: center; padding: 4px; }
+  .mcd-row { display: flex; align-items: center; gap: 10px; margin: 18px 0; flex-wrap: wrap; justify-content: center; }
+  .mcd-entity { border: 2px solid #14213d; border-radius: 6px; overflow: hidden; min-width: 150px; }
+  .mcd-entity h5 { background: #14213d; color: white; padding: 6px 10px; text-align: center; }
+  .mcd-entity ul { margin: 0; padding: 8px 12px; font-size: 11px; list-style: none; }
+  .mcd-entity li { margin-bottom: 2px; }
+  .mcd-entity li.pk { font-weight: 700; text-decoration: underline; }
+  .mcd-arrow { font-size: 10.5px; color: #444; text-align: center; white-space: normal; max-width: 130px; }
+  .reac-ok { color: #3fb27f; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -73,27 +87,73 @@
 
 <!-- ============ SOMMAIRE ============ -->
 <div class="toc">
-  <h1>Sommaire</h1>
-  <ol>
-    <li>Présentation du candidat</li>
-    <li>Présentation du projet
-      <ol type="a"><li>Contexte et origine</li><li>Objectifs et public visé</li><li>Fonctionnalités</li></ol>
-    </li>
-    <li>Gestion de projet</li>
-    <li>Architecture et choix techniques
-      <ol type="a"><li>Vue d'ensemble</li><li>Modèle de données</li><li>Justification des choix</li></ol>
-    </li>
-    <li>Compétences — Bloc 1 : Front-end
-      <ol type="a"><li>Maquetter les interfaces</li><li>Réaliser les interfaces statiques</li><li>Développer la partie dynamique</li></ol>
-    </li>
-    <li>Compétences — Bloc 2 : Back-end
-      <ol type="a"><li>Base de données relationnelle</li><li>Accès aux données SQL et NoSQL</li><li>Composants métier serveur</li></ol>
-    </li>
-    <li>Sécurisation de l'application</li>
-    <li>Tests</li>
-    <li>Bilan et perspectives</li>
-    <li>Annexes</li>
-  </ol>
+<h1>Sommaire</h1>
+<ol>
+  <li><div class="toc-entry"><span>Présentation du candidat</span><span class="toc-page">4</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Mon parcours</span><span class="toc-page">4</span></div></li>
+      <li><div class="toc-entry"><span>Ma formation</span><span class="toc-page">4</span></div></li>
+      <li><div class="toc-entry"><span>Ce qui me motive</span><span class="toc-page">4</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Présentation du projet</span><span class="toc-page">5</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Contexte et origine</span><span class="toc-page">5</span></div></li>
+      <li><div class="toc-entry"><span>Objectifs et public visé</span><span class="toc-page">5</span></div></li>
+      <li><div class="toc-entry"><span>Fonctionnalités</span><span class="toc-page">5</span></div></li>
+      <li><div class="toc-entry"><span>Cahier des charges — exigences non fonctionnelles</span><span class="toc-page">6</span></div></li>
+      <li><div class="toc-entry"><span>Contraintes du projet</span><span class="toc-page">7</span></div></li>
+      <li><div class="toc-entry"><span>Livrables attendus</span><span class="toc-page">7</span></div></li>
+      <li><div class="toc-entry"><span>Environnement humain et technique</span><span class="toc-page">7</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Gestion de projet</span><span class="toc-page">9</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Méthodologie</span><span class="toc-page">9</span></div></li>
+      <li><div class="toc-entry"><span>Outils</span><span class="toc-page">9</span></div></li>
+      <li><div class="toc-entry"><span>Planning</span><span class="toc-page">9</span></div></li>
+      <li><div class="toc-entry"><span>Gestion des risques</span><span class="toc-page">9</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Architecture et choix techniques</span><span class="toc-page">11</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Vue d'ensemble</span><span class="toc-page">11</span></div></li>
+      <li><div class="toc-entry"><span>Modèle de données (MCD, MLD, MongoDB)</span><span class="toc-page">12</span></div></li>
+      <li><div class="toc-entry"><span>Justification des choix technologiques</span><span class="toc-page">14</span></div></li>
+      <li><div class="toc-entry"><span>Schéma de déploiement</span><span class="toc-page">15</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Compétences — Bloc 1 : front-end</span><span class="toc-page">16</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Maquetter les interfaces (zoning, wireframe, maquette, enchaînement)</span><span class="toc-page">16</span></div></li>
+      <li><div class="toc-entry"><span>Réaliser les interfaces statiques</span><span class="toc-page">18</span></div></li>
+      <li><div class="toc-entry"><span>Développer la partie dynamique</span><span class="toc-page">19</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Compétences — Bloc 2 : back-end</span><span class="toc-page">23</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Base de données relationnelle</span><span class="toc-page">23</span></div></li>
+      <li><div class="toc-entry"><span>Accès aux données SQL et NoSQL</span><span class="toc-page">23</span></div></li>
+      <li><div class="toc-entry"><span>Composants métier serveur</span><span class="toc-page">25</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Sécurisation de l'application</span><span class="toc-page">28</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Mesures appliquées</span><span class="toc-page">28</span></div></li>
+      <li><div class="toc-entry"><span>Sécurité côté front-end</span><span class="toc-page">28</span></div></li>
+      <li><div class="toc-entry"><span>Veille sur les vulnérabilités de sécurité</span><span class="toc-page">29</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Tests</span><span class="toc-page">30</span></div>
+    <ol type="a">
+      <li><div class="toc-entry"><span>Stratégie de test</span><span class="toc-page">30</span></div></li>
+      <li><div class="toc-entry"><span>Jeu d'essai</span><span class="toc-page">30</span></div></li>
+      <li><div class="toc-entry"><span>Résultats</span><span class="toc-page">32</span></div></li>
+    </ol>
+  </li>
+  <li><div class="toc-entry"><span>Bilan et perspectives</span><span class="toc-page">33</span></div></li>
+  <li><div class="toc-entry"><span>Annexes</span><span class="toc-page">35</span></div></li>
+</ol>
 </div>
 
 <!-- ============ 1. CANDIDAT ============ -->
@@ -105,11 +165,15 @@
 travaillé dans la restauration. J'ai ensuite été cariste, puis plaquiste. Ce sont des métiers très éloignés du
 numérique, mais ils m'ont appris à tenir un rythme, à être fiable sur ce qu'on me confie et à travailler avec des
 équipes et des clients très différents. Je retrouve ces habitudes dans la façon dont je développe : avancer étape
-par étape et vérifier ce que je livre.</p>
+par étape et vérifier ce que je livre avant de passer à la suite.</p>
 
 <h2>1.2 Ma formation</h2>
 <p>Je prépare le titre professionnel Développeur Web et Web Mobile au CEF. ModHub est le projet que j'ai
-construit pour couvrir les compétences du référentiel dans le cadre de cet examen blanc.</p>
+construit pour couvrir l'ensemble des compétences du référentiel (REAC), à la fois pour le bloc 1 (front-end :
+maquettage, interfaces statiques, interfaces dynamiques) et le bloc 2 (back-end : base de données relationnelle,
+accès aux données SQL et NoSQL, composants métier serveur). Ce dossier correspond au document qui sera présenté
+au jury : il respecte donc la structure et les exigences du Référentiel d'Évaluation, et pas seulement le format
+d'un exercice interne.</p>
 
 <h2>1.3 Ce qui me motive</h2>
 <p>Ce qui me plaît dans ce métier, c'est de pouvoir créer des choses nouvelles qui servent à tout type de
@@ -136,6 +200,19 @@ les véhicules depuis l'éditeur, et j'ai réalisé un mod qui alimente un site 
 donc vu de l'intérieur ce dont un créateur a besoin : publier une version, savoir si elle est utilisée, recevoir
 des retours. C'est de là qu'est venue l'idée de ModHub.</p>
 
+<h3>Comparaison avec les solutions existantes</h3>
+<table>
+<tr><th>Solution</th><th>Limite pour le suivi d'un mod dans la durée</th></tr>
+<tr><td>Forums génériques</td><td>Pas de structure par version : le changelog se perd dans les pages de
+discussion, aucun filtre par jeu ou catégorie</td></tr>
+<tr><td>Serveurs Discord</td><td>Historique difficile à consulter (messages non structurés), pas de fiche
+centralisée par mod, aucune notation formelle</td></tr>
+<tr><td>Sites de partage génériques (hébergement de fichiers)</td><td>Pensés pour un fichier isolé, pas pour une
+fiche mod vivante avec versions, notes et commentaires liés</td></tr>
+<tr><td>ModHub</td><td>Fiche mod unique par mod, versions historisées avec changelog, notation et suivi
+personnalisé, métadonnées adaptées à chaque jeu</td></tr>
+</table>
+
 <h2>2.2 Objectifs et public visé</h2>
 <table>
 <tr><th>Public</th><th>Besoin</th></tr>
@@ -155,6 +232,86 @@ installer, suivre les mods qui les intéressent</td></tr>
 <li>Suivi de mods (follow) et fil d'activité personnalisé</li>
 <li>Modération administrateur (validation / rejet des publications)</li>
 </ul>
+
+<p>Formulées en histoires utilisateur (<em>user stories</em>), les fonctionnalités principales se lisent ainsi :</p>
+<table>
+<tr><th>En tant que…</th><th>Je veux…</th><th>Afin de…</th></tr>
+<tr><td>Créateur de mods</td><td>publier un mod avec ses métadonnées spécifiques au jeu</td><td>le rendre visible
+à la communauté une fois validé par un modérateur</td></tr>
+<tr><td>Créateur de mods</td><td>ajouter une nouvelle version avec un changelog</td><td>informer les joueurs des
+correctifs et nouveautés sans dupliquer la fiche du mod</td></tr>
+<tr><td>Joueur</td><td>rechercher et filtrer les mods par jeu ou catégorie</td><td>trouver rapidement un mod
+pertinent sans parcourir tout le catalogue</td></tr>
+<tr><td>Joueur</td><td>noter et commenter un mod, puis le suivre</td><td>partager mon avis et être informé de ses
+futures mises à jour</td></tr>
+<tr><td>Modérateur</td><td>examiner les mods en attente et les approuver ou les rejeter</td><td>garantir la
+qualité du catalogue public</td></tr>
+</table>
+
+<h2>2.4 Cahier des charges — exigences non fonctionnelles</h2>
+<p>Au-delà des fonctionnalités, le cahier des charges impose de traiter un ensemble d'exigences transverses.
+Voici, pour chacune, ce qui a été mis en place et ce qui reste une limite connue plutôt qu'un point traité en
+façade :</p>
+<table>
+<tr><th>Exigence</th><th>Prise en compte dans ModHub</th></tr>
+<tr><td>SEO</td><td>Balise <code class="inline">&lt;title&gt;</code> et <code class="inline">meta description</code>
+renseignées dans <code class="inline">index.html</code> (remplacées depuis le titre par défaut de Vite). L'application
+reste une SPA sans rendu serveur : pas de balises meta dynamiques par fiche mod ni de sitemap. Un rendu côté serveur
+(SSR) serait l'étape suivante pour un vrai référencement.</td></tr>
+<tr><td>Accessibilité</td><td>Structure sémantique (<code class="inline">header</code>, <code class="inline">nav</code>,
+<code class="inline">main</code>, <code class="inline">section</code>, <code class="inline">article</code> — voir
+5.2), labels associés aux champs de formulaire, boutons et liens natifs (navigation clavier fonctionnelle sans
+JavaScript spécifique), palette sombre avec un contraste texte/fond supérieur à 4.5:1. Pas d'audit RGAA complet :
+les messages d'erreur asynchrones (ex. échec de connexion) ne sont pas encore annoncés par un attribut
+<code class="inline">aria-live</code>.</td></tr>
+<tr><td>RGPD</td><td>Données personnelles collectées limitées au nécessaire (email, pseudo, mot de passe haché) —
+aucune donnée sensible. Pas encore de politique de confidentialité ni de fonctionnalité d'export/suppression de
+compte : à ajouter avant une mise en production réelle avec de vrais utilisateurs.</td></tr>
+<tr><td>Éco-conception</td><td>Aucun script de suivi tiers, aucune police web externe chargée depuis un CDN (police
+système), API paginée plutôt qu'un chargement complet du catalogue. Pas d'audit Lighthouse formalisé sur ce point.</td></tr>
+<tr><td>Sécurité</td><td>Traitée en détail section 7 (mesures appliquées, sécurité front-end, veille).</td></tr>
+<tr><td>Performance</td><td>Index PostgreSQL sur les colonnes les plus filtrées (<code class="inline">gameKey</code>,
+<code class="inline">status</code>), pagination des listes, recherche avec debounce pour limiter les requêtes. Pas
+de cache HTTP ni de CDN pour les assets statiques à ce stade.</td></tr>
+<tr><td>Responsive</td><td>Grille CSS Grid/Flexbox intrinsèquement fluide, complétée par une media query dédiée
+sous 640&nbsp;px pour la navigation et la grille de mods (voir 5.2 et 5.1 pour les maquettes mobile).</td></tr>
+</table>
+
+<h2>2.5 Contraintes du projet</h2>
+<ul>
+<li><strong>Délai</strong> : réalisation en 3 jours (12 au 14 septembre 2026), dans le cadre du calendrier de la
+formation — pas de marge pour explorer plusieurs pistes techniques par lot de travail.</li>
+<li><strong>Environnement de développement</strong> : pas de Docker fonctionnel sur la machine (aucune distribution
+WSL2 installée), ce qui a orienté le choix d'hébergement de PostgreSQL (voir 3.2 et 9.1).</li>
+<li><strong>Budget</strong> : uniquement des outils gratuits — Supabase (offre gratuite), MongoDB local, dépôt
+GitHub gratuit.</li>
+<li><strong>Conformité au Référentiel d'Évaluation</strong> : le dossier doit couvrir explicitement chaque
+compétence du bloc 1 et du bloc 2 avec des preuves concrètes (extraits de code réels, pas de description
+théorique seule) — voir la correspondance en annexe 10.2.</li>
+<li><strong>Support de remise</strong> : le dossier est remis au jury en version papier ; les liens (dépôt GitHub)
+ont donc un intérêt de traçabilité mais ne remplacent pas le contenu, qui doit être autoporteur (voir 10.3).</li>
+</ul>
+
+<h2>2.6 Livrables attendus</h2>
+<p>Conformément à la consigne du devoir, trois livrables sont produits et remis séparément :</p>
+<ul>
+<li>Un lien vers le dépôt GitHub du projet présenté (code source complet, historique de commits) ;</li>
+<li>Le présent dossier de projet, au format PDF ;</li>
+<li>Le support de présentation orale, également au format PDF.</li>
+</ul>
+
+<h2>2.7 Environnement humain et technique</h2>
+<p>Le projet a été conçu, développé, testé et documenté seul, dans le cadre individuel de la formation — sans
+équipe ni répartition de rôles. L'environnement technique utilisé est le suivant :</p>
+<table>
+<tr><th>Élément</th><th>Détail</th></tr>
+<tr><td>Poste de travail</td><td>PC personnel sous Windows, pas de serveur dédié</td></tr>
+<tr><td>Éditeur / outils</td><td>Visual Studio Code, terminal intégré, Git</td></tr>
+<tr><td>Runtime</td><td>Node.js (version LTS), TypeScript</td></tr>
+<tr><td>Base relationnelle</td><td>PostgreSQL managé (Supabase, offre gratuite) — voir 9.1 pour le choix</td></tr>
+<tr><td>Base NoSQL</td><td>MongoDB en local (service Windows déjà présent sur la machine)</td></tr>
+<tr><td>Hébergement du code</td><td>Dépôt Git hébergé sur GitHub, public</td></tr>
+</table>
 </div>
 
 <!-- ============ 3. GESTION DE PROJET ============ -->
@@ -163,7 +320,8 @@ installer, suivre les mods qui les intéressent</td></tr>
 <h2>3.1 Méthodologie</h2>
 <p>Je suis parti du besoin, puis j'ai fixé l'architecture avant d'écrire du code. J'ai ensuite avancé par
 tranches complètes et utilisables : d'abord l'authentification de bout en bout, puis le cœur métier des mods, puis
-l'interface, puis la sécurité. Je vérifiais chaque tranche au fur et à mesure au lieu de tout tester à la fin.</p>
+l'interface, puis la sécurité. Je vérifiais chaque tranche au fur et à mesure au lieu de tout tester à la fin —
+chaque tranche correspond à un commit Git autonome et fonctionnel (voir 3.3).</p>
 
 <h2>3.2 Outils</h2>
 <table>
@@ -176,9 +334,38 @@ l'interface, puis la sécurité. Je vérifiais chaque tranche au fur et à mesur
 </table>
 
 <h2>3.3 Planning</h2>
-<p>J'ai réalisé le projet en 3 jours, du 12 au 14 septembre 2026, dans le cadre de l'examen blanc. Le travail
-est découpé en quatre tranches livrables, chacune correspondant à un commit Git : mise en place du projet et
-authentification, cœur métier des mods (PostgreSQL + MongoDB), interface, puis renforcement de la sécurité.</p>
+<p>J'ai réalisé le projet en 3 jours, du 12 au 14 septembre 2026, dans le cadre de l'examen blanc. Le travail est
+découpé en tranches livrables, chacune correspondant à un ou plusieurs commits Git :</p>
+<table>
+<tr><th>Tranche</th><th>Contenu</th></tr>
+<tr><td>1 — Mise en place</td><td>Scaffold backend Express/TypeScript et frontend Vite/React/TypeScript,
+authentification JWT (inscription, connexion, rôles)</td></tr>
+<tr><td>2 — Cœur métier</td><td>Module Mods : CRUD, versions, notes, commentaires, follows, fil d'activité
+(PostgreSQL + MongoDB)</td></tr>
+<tr><td>3 — Interface</td><td>Catalogue, fiche mod, espace créateur, page de modération admin</td></tr>
+<tr><td>4 — Sécurité et finalisation</td><td>Durcissement CORS, limitation de débit, tests d'intégration,
+documentation</td></tr>
+</table>
+
+<h2>3.4 Gestion des risques</h2>
+<p>Risques identifiés en amont ou en cours de projet, et réponse apportée — les trois premiers se sont
+effectivement matérialisés (voir 9.1 pour le détail) :</p>
+<table>
+<tr><th>Risque</th><th>Probabilité / impact</th><th>Réponse apportée</th></tr>
+<tr><td>Environnement de développement incomplet (pas de Docker)</td><td>Élevée / élevé — bloque la base
+relationnelle prévue</td><td>Bascule vers un hébergement managé gratuit (Supabase) plutôt que d'attendre une
+réinstallation ; décision prise dès qu'identifié pour ne pas perdre de temps sur le planning de 3 jours</td></tr>
+<tr><td>Changement d'API majeur d'une dépendance en cours de projet (Prisma 7)</td><td>Moyenne / moyen — risque
+de code non fonctionnel basé sur une documentation obsolète</td><td>Vérification systématique du comportement
+réel de l'outil (essai direct) avant d'écrire du code dépendant, plutôt que de supposer un comportement identique
+aux versions précédentes</td></tr>
+<tr><td>Délai très court (3 jours) pour couvrir deux blocs de compétences</td><td>Élevée / élevé — risque de
+dossier incomplet</td><td>Découpage en tranches verticales livrables (3.1) : chaque tranche reste utilisable même
+si le temps manque pour la suivante, plutôt qu'un développement en couches horizontales tout ou rien</td></tr>
+<tr><td>Absence de vrai upload de fichiers (dépendance non branchée)</td><td>Faible / moyen — fonctionnalité
+dégradée mais non bloquante pour la démonstration</td><td>Assumé comme limite connue et documenté explicitement
+(7.1) plutôt que masqué, avec une piste de résolution en perspective (9.3)</td></tr>
+</table>
 </div>
 
 <!-- ============ 4. ARCHITECTURE ============ -->
@@ -218,20 +405,128 @@ NoSQL sans savoir comment chacun fonctionne. Grâce à cette séparation, le cod
 chacun dans leur dossier et ne se mélangent pas.
 </div>
 
-<h2>4.2 Modèle de données</h2>
-<h3>4.2.1 PostgreSQL — schéma relationnel</h3>
-<p>Sept tables, avec clés étrangères et contraintes d'unicité pour garantir l'intégrité (une note = un couple
-utilisateur/mod unique, suppression en cascade des données dépendantes d'un mod supprimé) :</p>
-<pre>User (id, email UNIQUE, passwordHash, displayName, role, createdAt)
-Category (id, name UNIQUE, slug UNIQUE)
-Mod (id, title, slug UNIQUE, summary, description, gameKey, status, authorId → User, categoryId → Category)
-Version (id, modId → Mod, versionLabel, changelog, fileUrl, fileSizeBytes, downloadCount)
-   UNIQUE(modId, versionLabel)
-Rating (id, modId → Mod, userId → User, value)         UNIQUE(modId, userId)
-Comment (id, modId → Mod, userId → User, body, createdAt)
-Follow (id, modId → Mod, userId → User)                 UNIQUE(modId, userId)</pre>
+<p>Le contrat entre frontend et backend passe par des interfaces TypeScript dupliquées manuellement côté client
+(pas de génération automatique de types dans ce projet), ce qui reste un choix raisonnable à l'échelle d'une
+seule API REST simple :</p>
+<pre>// frontend/src/api/types.ts
+export type ModStatus = 'PENDING' | 'APPROVED' | 'REJECTED';
 
-<h3>4.2.2 MongoDB — collections</h3>
+export interface ModSummary {
+  id: string;
+  title: string;
+  slug: string;
+  summary: string;
+  gameKey: string;
+  status: ModStatus;
+  createdAt: string;
+  category: Category;
+}</pre>
+
+<h2>4.2 Modèle de données</h2>
+
+<h3>4.2.1 Modèle Conceptuel de Données (MCD)</h3>
+<p>Le MCD identifie cinq entités et leurs associations, en notation Merise (cardinalités entre parenthèses).
+<code class="inline">Rating</code> et <code class="inline">Follow</code> sont modélisées comme de véritables
+associations porteuses de données (elles ne portent qu'un attribut ou aucun, et la contrainte d'unicité sur le
+couple mod/utilisateur garantit au plus une occurrence par couple, ce qu'exige une association many-to-many
+classique). <code class="inline">Comment</code>, en revanche, n'a pas cette contrainte d'unicité — un utilisateur
+peut commenter plusieurs fois le même mod — elle a donc été reifiée en entité à part entière, identifiée par son
+propre <code class="inline">id</code>, reliée par deux associations distinctes.</p>
+
+<div class="mcd-row">
+  <div class="mcd-entity">
+    <h5>UTILISATEUR</h5>
+    <ul><li class="pk">id</li><li>email</li><li>motDePasseHash</li><li>pseudo</li><li>role</li><li>dateCreation</li></ul>
+  </div>
+  <div class="mcd-arrow">(0,n) PUBLIE (1,1) →</div>
+  <div class="mcd-entity">
+    <h5>MOD</h5>
+    <ul><li class="pk">id</li><li>titre</li><li>slug</li><li>resume</li><li>description</li><li>cléJeu</li><li>statut</li><li>dateCreation</li><li>dateMaj</li></ul>
+  </div>
+  <div class="mcd-arrow">← (0,n) CLASSE (1,1)</div>
+  <div class="mcd-entity">
+    <h5>CATEGORIE</h5>
+    <ul><li class="pk">id</li><li>nom</li><li>slug</li></ul>
+  </div>
+</div>
+<div class="mcd-row">
+  <div class="mcd-arrow">MOD (1,1) POSSEDE (0,n) →</div>
+  <div class="mcd-entity">
+    <h5>VERSION</h5>
+    <ul><li class="pk">id</li><li>numeroVersion</li><li>changelog</li><li>urlFichier</li><li>tailleFichier</li><li>nbTelechargements</li></ul>
+  </div>
+  <div class="mcd-arrow">MOD (1,1) CONCERNE (0,n) →</div>
+  <div class="mcd-entity">
+    <h5>COMMENTAIRE</h5>
+    <ul><li class="pk">id</li><li>contenu</li><li>dateCreation</li></ul>
+  </div>
+  <div class="mcd-arrow">← (0,n) REDIGE (1,1) UTILISATEUR</div>
+</div>
+
+<p>Deux associations many-to-many supplémentaires relient directement UTILISATEUR et MOD, chacune avec sa
+contrainte d'unicité (0,n)–(0,n) :</p>
+<table>
+<tr><th>Entité 1</th><th>Card.</th><th>Association</th><th>Card.</th><th>Entité 2</th><th>Attribut porté</th></tr>
+<tr><td>UTILISATEUR</td><td>(0,n)</td><td>NOTE</td><td>(0,n)</td><td>MOD</td><td>valeur</td></tr>
+<tr><td>UTILISATEUR</td><td>(0,n)</td><td>SUIT</td><td>(0,n)</td><td>MOD</td><td>—</td></tr>
+</table>
+
+<h3>4.2.2 Modèle Logique de Données (MLD)</h3>
+<p>Traduction du MCD en tables relationnelles (clé primaire soulignée, clé étrangère précédée de <code
+class="inline">#</code>) — correspond exactement au schéma Prisma versionné dans <code
+class="inline">prisma/schema.prisma</code> :</p>
+<pre>User      (<u>id</u>, email, passwordHash, displayName, role, createdAt)
+Category  (<u>id</u>, name, slug)
+Mod       (<u>id</u>, title, slug, summary, description, gameKey, status, createdAt, updatedAt,
+           #authorId, #categoryId)
+Version   (<u>id</u>, versionLabel, changelog, fileUrl, fileSizeBytes, downloadCount, createdAt,
+           #modId)                                    UNIQUE(modId, versionLabel)
+Rating    (<u>id</u>, value, createdAt, #modId, #userId)        UNIQUE(modId, userId)
+Comment   (<u>id</u>, body, createdAt, #modId, #userId)
+Follow    (<u>id</u>, createdAt, #modId, #userId)                UNIQUE(modId, userId)</pre>
+
+<p>Script de création réel, extrait de la migration Prisma versionnée (<code
+class="inline">prisma/migrations/20260912171121_init/migration.sql</code>) :</p>
+<pre>CREATE TABLE "Mod" (
+    "id"          TEXT NOT NULL,
+    "title"       TEXT NOT NULL,
+    "slug"        TEXT NOT NULL,
+    "summary"     TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "gameKey"     TEXT NOT NULL,
+    "status"      "ModStatus" NOT NULL DEFAULT 'PENDING',
+    "createdAt"   TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt"   TIMESTAMP(3) NOT NULL,
+    "authorId"    TEXT NOT NULL,
+    "categoryId"  TEXT NOT NULL,
+    CONSTRAINT "Mod_pkey" PRIMARY KEY ("id")
+);
+
+CREATE UNIQUE INDEX "Mod_slug_key" ON "Mod"("slug");
+CREATE INDEX "Mod_gameKey_idx" ON "Mod"("gameKey");
+CREATE INDEX "Mod_status_idx" ON "Mod"("status");
+
+ALTER TABLE "Mod" ADD CONSTRAINT "Mod_authorId_fkey"
+  FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Mod" ADD CONSTRAINT "Mod_categoryId_fkey"
+  FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;</pre>
+<div class="callout">
+La suppression d'un mod entraîne, en cascade, la suppression de ses versions, notes, commentaires et suivis
+(<code class="inline">ON DELETE CASCADE</code>). La catégorie, en revanche, ne peut pas être supprimée tant qu'un
+mod y est rattaché (<code class="inline">ON DELETE RESTRICT</code>) : c'est une décision de modélisation
+volontaire pour éviter de laisser des mods orphelins.
+</div>
+
+<h4>Normalisation</h4>
+<p>Le schéma respecte la 3<sup>e</sup> forme normale : chaque table n'a qu'une seule clé primaire (1FN, pas de
+groupe répétitif — les versions, notes, commentaires et suivis d'un mod sont chacun dans leur propre table plutôt
+que des colonnes répétées sur <code class="inline">Mod</code>), tous les attributs non-clés dépendent de la
+totalité de la clé primaire (2FN — trivial ici, aucune clé primaire composite) et aucun attribut non-clé ne
+dépend d'un autre attribut non-clé plutôt que de la clé (3FN — par exemple, le nom de la catégorie n'est jamais
+dupliqué sur <code class="inline">Mod</code>, seule sa clé étrangère <code class="inline">categoryId</code> y
+figure).</p>
+
+<h3>4.2.3 MongoDB — collections</h3>
 <table>
 <tr><th>Collection</th><th>Usage</th><th>Pourquoi NoSQL plutôt que relationnel</th></tr>
 <tr><td><code class="inline">ActivityEvent</code></td><td>Fil d'activité (nouveau mod, nouvelle version, nouveau
@@ -260,6 +555,27 @@ bibliothèque Mongoose mature pour la validation de schéma côté application</
 <tr><td>JWT + bcryptjs</td><td>Authentification sans état côté serveur (scalable horizontalement), hachage de mot
 de passe avec coût réglable ; bcryptjs plutôt que bcrypt pour éviter une dépendance à compilation native</td></tr>
 </table>
+
+<h2>4.4 Schéma de déploiement</h2>
+<p>En développement, les quatre briques tournent sur des hôtes différents, ce qui a directement influencé les
+choix d'hébergement (voir 9.1) :</p>
+<pre>┌─────────────────┐        ┌───────────────────────┐        ┌──────────────────────┐
+│  Navigateur      │  HTTP  │  Frontend              │  HTTP  │  Backend Express      │
+│  (client final)  │ ─────▶ │  React/Vite (build      │ ─────▶ │  Node.js — poste local│
+│                  │        │  statique ou dev server)│        │  (port 4000)          │
+└─────────────────┘        └───────────────────────┘        └──────────┬───────────┘
+                                                                          │
+                                                    ┌─────────────────────┼─────────────────────┐
+                                                    ▼                                             ▼
+                                        ┌───────────────────────┐                 ┌───────────────────────┐
+                                        │ PostgreSQL (Supabase)  │                 │ MongoDB — local        │
+                                        │ hébergement cloud      │                 │ service Windows        │
+                                        │ gratuit                │                 │ (pas de Docker requis) │
+                                        └───────────────────────┘                 └───────────────────────┘</pre>
+<p>Le frontend et le backend restent deux processus séparés communiquant en HTTP (REST), ce qui permettrait de
+les déployer sur deux hébergeurs différents sans changement de code — seule l'URL de l'API (variable
+d'environnement <code class="inline">FRONTEND_URL</code> côté serveur, URL de base de l'API côté client) devrait
+être ajustée.</p>
 </div>
 
 <!-- ============ 5. BLOC 1 ============ -->
@@ -269,10 +585,32 @@ de passe avec coût réglable ; bcryptjs plutôt que bcrypt pour éviter une dé
 <div class="skill-block">
 <span class="badge-competence">Compétence</span>
 <h4>5.1 Maquetter des interfaces utilisateur web ou web mobile</h4>
-<p>J'ai schématisé les deux écrans principaux (catalogue et fiche mod) en basse fidélité, pour montrer la
-structure retenue : hiérarchie de l'information, zones d'action, parcours de l'utilisateur, sans se soucier du
-rendu graphique.</p>
+<p>La démarche suivie sur les deux écrans principaux (catalogue et fiche mod) part du zoning, puis passe au
+wireframe basse fidélité, en version desktop et mobile, avant d'arriver à la maquette réelle (les captures
+d'écran de l'application, présentées section 5.2 et 5.3).</p>
 
+<h5>Étape 1 — Zoning</h5>
+<p>Le zoning découpe l'écran en grandes zones fonctionnelles, sans se préoccuper du contenu ni des composants :</p>
+<div class="two-col">
+<div>
+<div class="zoning-frame" style="height:150px;display:flex;flex-direction:column;">
+  <div class="zoning-zone" style="height:22px;">Zone navigation</div>
+  <div class="zoning-zone" style="height:20px;">Zone titre + recherche</div>
+  <div class="zoning-zone" style="flex:1;">Zone liste des mods (répétée)</div>
+</div>
+<figcaption>Zoning — Catalogue (desktop)</figcaption>
+</div>
+<div>
+<div class="zoning-frame mobile" style="height:150px;display:flex;flex-direction:column;">
+  <div class="zoning-zone" style="height:22px;">Nav</div>
+  <div class="zoning-zone" style="height:20px;">Recherche</div>
+  <div class="zoning-zone" style="flex:1;">Liste (1 colonne)</div>
+</div>
+<figcaption>Zoning — Catalogue (mobile)</figcaption>
+</div>
+</div>
+
+<h5>Étape 2 — Wireframe basse fidélité (desktop)</h5>
 <div class="two-col">
 <div>
 <div class="wf-frame">
@@ -294,7 +632,7 @@ rendu graphique.</p>
     </div>
   </div>
 </div>
-<figcaption>Maquette basse fidélité — Catalogue</figcaption>
+<figcaption>Wireframe desktop — Catalogue</figcaption>
 </div>
 <div>
 <div class="wf-frame">
@@ -313,14 +651,87 @@ rendu graphique.</p>
     </div>
   </div>
 </div>
-<figcaption>Maquette basse fidélité — Fiche mod</figcaption>
+<figcaption>Wireframe desktop — Fiche mod</figcaption>
+</div>
+</div>
+
+<h5>Étape 2 bis — Wireframe basse fidélité (mobile)</h5>
+<p>En dessous de 640&nbsp;px, la navigation passe sous le logo et la grille de mods repasse en une seule colonne
+(voir la media query correspondante en 5.2) :</p>
+<div class="two-col">
+<div>
+<div class="wf-frame mobile">
+  <div class="wf-nav" style="flex-wrap:wrap;">
+    <div class="wf-text" style="width:50px;height:11px;">ModHub</div>
+    <div class="wf-btn" style="margin-left:auto;">Connexion</div>
+    <div class="wf-text" style="width:100%;height:9px;margin-top:4px;">Catalogue</div>
+  </div>
+  <div style="padding:10px;">
+    <div class="wf-box" style="width:100%;height:16px;margin-bottom:8px;"></div>
+    <div class="wf-box" style="width:100%;height:60px;margin-bottom:6px;"></div>
+    <div class="wf-box" style="width:100%;height:60px;"></div>
+  </div>
+</div>
+<figcaption>Wireframe mobile — Catalogue (1 colonne)</figcaption>
+</div>
+<div>
+<div class="wf-frame mobile">
+  <div class="wf-nav"><div class="wf-text" style="width:50px;height:11px;">ModHub</div></div>
+  <div style="padding:10px;">
+    <div class="wf-text" style="width:100%;height:14px;margin-bottom:8px;"></div>
+    <div class="wf-box" style="width:100%;height:36px;margin-bottom:8px;"></div>
+    <div class="wf-btn" style="width:100%;margin-bottom:4px;">★★★★★</div>
+    <div class="wf-btn" style="width:100%;">Suivre</div>
+  </div>
+</div>
+<figcaption>Wireframe mobile — Fiche mod (empilé)</figcaption>
 </div>
 </div>
 
 <div class="callout">
-Ces maquettes sont volontairement simples (boîtes grisées, pas de contenu réel) : elles servent à fixer la
-disposition. Le rendu final de ces écrans est visible dans les captures d'écran de la suite du dossier.
+Ces wireframes sont volontairement simples (boîtes grisées, pas de contenu réel) : ils servent à fixer la
+disposition, en desktop comme en mobile, avant de passer au code. L'étape 3 — la maquette réelle — correspond aux
+captures d'écran de l'application effectivement construite, visibles à partir de la section 5.2.
 </div>
+
+<h5>Schéma d'enchaînement des écrans</h5>
+<p>Indépendamment de la disposition de chaque écran (wireframe), ce schéma montre comment on navigue de l'un à
+l'autre — les flèches correspondent aux routes déclarées dans <code class="inline">App.tsx</code> (voir 4.1) :</p>
+<pre>                    ┌───────────────────┐
+                    │  Catalogue  (/)    │◀──────────────────────────┐
+                    └─────────┬─────────┘                            │
+              clic sur un mod │           clic "Connexion"           │ clic "ModHub"
+                              ▼                       │               │ (logo, retour accueil)
+                    ┌───────────────────┐             ▼               │
+                    │ Fiche mod          │   ┌───────────────────┐   │
+                    │ (/mods/:slug)      │   │ Connexion (/login) │───┘
+                    └─────────┬─────────┘   └─────────┬─────────┘
+        clic "Suivre"/note/   │             clic "Créer un compte"
+        commentaire (si connecté)                     ▼
+                              │             ┌───────────────────┐
+                              │             │ Inscription        │──▶ (redirige vers /)
+                              │             │ (/register)         │
+                              │             └───────────────────┘
+                              │
+        lien nav "Mes mods"   ▼                lien nav "Publier un mod"
+                    ┌───────────────────┐                │
+                    │ Dashboard créateur │◀───────────────┘
+                    │ (/dashboard)        │
+                    └─────────┬─────────┘
+        clic "Ajouter version"│
+                              ▼
+                    ┌───────────────────┐        lien nav "Modération"
+                    │ Création de mod    │        (rôle ADMIN uniquement)
+                    │ (/mods/new)         │                │
+                    └───────────────────┘                  ▼
+                                                 ┌───────────────────┐
+                                                 │ Modération admin   │
+                                                 │ (/admin)            │
+                                                 └───────────────────┘</pre>
+<p>Les routes <code class="inline">/dashboard</code>, <code class="inline">/mods/new</code> et <code
+class="inline">/admin</code> sont protégées (<code class="inline">ProtectedRoute</code>, voir 5.3) : un
+utilisateur non connecté est redirigé vers <code class="inline">/login</code>, et un utilisateur non-administrateur
+tentant d'atteindre <code class="inline">/admin</code> est redirigé vers l'accueil.</p>
 </div>
 
 <div class="skill-block">
@@ -335,10 +746,46 @@ projet de cette taille, je préfère garder la maîtrise du rendu et éviter une
   --color-accent: #5b8def;
   --color-danger: #e0554f;
   --color-success: #3fb27f;
+  color-scheme: dark;
 }</pre>
+
+<h5>Balisage HTML sémantique</h5>
+<p>Les pages n'empilent pas des <code class="inline">&lt;div&gt;</code> génériques : la structure utilise les
+balises sémantiques HTML5 correspondant au rôle réel de chaque zone (extrait de
+<code class="inline">App.tsx</code> et <code class="inline">ModDetailPage.tsx</code>) :</p>
+<pre>&lt;header className="navbar"&gt;…&lt;/header&gt;
+&lt;nav className="navbar__links"&gt;…&lt;/nav&gt;
+&lt;main className="container"&gt;
+  &lt;Routes&gt;…&lt;/Routes&gt;
+&lt;/main&gt;
+
+&lt;article className="mod-detail"&gt;
+  &lt;header&gt;
+    &lt;h1&gt;{mod.title}&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Versions&lt;/h2&gt;
+    …
+  &lt;/section&gt;
+&lt;/article&gt;</pre>
+
+<h5>CSS avancé : Flexbox, Grid et media query</h5>
 <p>La mise en page utilise Flexbox et CSS Grid (<code class="inline">grid-template-columns:
-repeat(auto-fill, minmax(260px, 1fr))</code> pour la grille de mods), ce qui rend le catalogue responsive sans
-media query dédiée pour les tailles intermédiaires.</p>
+repeat(auto-fill, minmax(260px, 1fr))</code> pour la grille de mods), ce qui rend le catalogue partiellement
+responsive dès la base. Une media query dédiée complète ce comportement pour les petits écrans, en repassant la
+grille en une colonne et en faisant passer les liens de navigation sous le logo :</p>
+<pre>.mod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .navbar { flex-wrap: wrap; gap: 12px; }
+  .navbar__links { order: 3; width: 100%; flex-wrap: wrap; }
+  .mod-grid { grid-template-columns: 1fr; }
+  .page-header { flex-direction: column; align-items: stretch; }
+}</pre>
 <figure>
   <img src="screenshots/01-catalogue.png" alt="Capture du catalogue de mods">
   <figcaption>Fig. 1 — Catalogue public, rendu réel de l'application (capture d'écran)</figcaption>
@@ -372,9 +819,19 @@ demandée (ex. un utilisateur non admin ne peut pas accéder à <code class="inl
 <li><strong>Formulaires contrôlés</strong> avec retour d'erreur asynchrone affiché sans rechargement de page
 (inscription, connexion, publication de mod, notation, commentaire).</li>
 </ul>
+<div class="two-col">
+<figure>
+  <img src="screenshots/03-login.png" alt="Capture de la page de connexion">
+  <figcaption>Fig. 2 — Formulaire de connexion contrôlé, erreur affichée sans rechargement</figcaption>
+</figure>
+<figure>
+  <img src="screenshots/04-register.png" alt="Capture de la page d'inscription">
+  <figcaption>Fig. 3 — Inscription : validation asynchrone (email déjà utilisé, mot de passe trop faible)</figcaption>
+</figure>
+</div>
 <figure>
   <img src="screenshots/02-mod-detail.png" alt="Capture de la fiche mod">
-  <figcaption>Fig. 2 — Fiche mod : métadonnées, versions et commentaires assemblés dynamiquement depuis deux
+  <figcaption>Fig. 4 — Fiche mod : métadonnées, versions et commentaires assemblés dynamiquement depuis deux
   sources de données différentes (PostgreSQL + MongoDB)</figcaption>
 </figure>
 </div>
@@ -387,8 +844,10 @@ demandée (ex. un utilisateur non admin ne peut pas accéder à <code class="inl
 <div class="skill-block">
 <span class="badge-competence">Compétence</span>
 <h4>6.1 Mettre en place une base de données relationnelle</h4>
-<p>Le schéma PostgreSQL est défini et versionné via Prisma (<code class="inline">prisma/schema.prisma</code>),
-avec migrations SQL générées et historisées dans <code class="inline">prisma/migrations/</code>. Extrait :</p>
+<p>Le MCD et le MLD complets sont présentés section 4.2 ; ils sont repris ici du point de vue de leur
+implémentation. Le schéma PostgreSQL est défini et versionné via Prisma (<code
+class="inline">prisma/schema.prisma</code>), avec migrations SQL générées et historisées dans <code
+class="inline">prisma/migrations/</code> (script de création complet en 4.2.2). Extrait du schéma Prisma :</p>
 <pre>model Mod {
   id          String    @id @default(uuid())
   title       String
@@ -406,7 +865,7 @@ avec migrations SQL générées et historisées dans <code class="inline">prisma
 <p>Les contraintes d'unicité composites (<code class="inline">@@unique([modId, userId])</code> sur
 <code class="inline">Rating</code> et <code class="inline">Follow</code>) garantissent au niveau base de données
 qu'un utilisateur ne peut noter ou suivre un mod qu'une seule fois, sans dépendre uniquement d'une vérification
-applicative.</p>
+applicative — c'est la traduction directe des cardinalités (0,n)–(0,n) du MCD (4.2.1).</p>
 </div>
 
 <div class="skill-block">
@@ -451,6 +910,26 @@ Ce comportement est couvert par un test d'intégration réel (<code class="inlin
 crée un mod via l'API, puis vérifie directement en base que le document MongoDB correspondant existe avec les
 bons champs — la preuve que les deux bases sont réellement utilisées, pas seulement déclarées dans le schéma.
 </div>
+
+<h5>Séquence d'exécution — création d'un mod</h5>
+<pre>Client (POST /api/mods)
+   │
+   ▼
+routes/mod.routes.ts        → requireAuth (vérifie le JWT)
+   │
+   ▼
+controllers/mod.controller.ts → createModSchema.parse(req.body)  [zod, voir 6.3]
+   │
+   ▼
+services/mod.service.ts     → modRepository.create(...)          [PostgreSQL, écriture principale]
+   │                        → activityRepository.setMetadata(...) [MongoDB, si métadonnées jeu fournies]
+   │                        → activityRepository.record('NEW_MOD', ...) [MongoDB, fil d'activité]
+   ▼
+Réponse HTTP 201 + mod créé</pre>
+<p>Les deux écritures MongoDB (métadonnées + événement) ne sont pas transactionnelles avec l'écriture PostgreSQL :
+en cas d'échec de l'une des deux, le mod reste créé en base relationnelle. C'est un compromis assumé (pas de
+transaction distribuée entre deux moteurs de bases différents) plutôt qu'un oubli — la donnée critique du métier
+(le mod lui-même) est celle qui est garantie.</p>
 </div>
 
 <div class="skill-block">
@@ -468,16 +947,75 @@ propriété avant l'ajout d'une version :</p>
   await activityRepository.record('NEW_VERSION', modId, authorId, { versionLabel: version.versionLabel });
   return version;
 }</pre>
+<p>Le contrôle d'accès par rôle est un autre composant métier transverse, appliqué via un middleware réutilisable
+sur toutes les routes qui en ont besoin (ex. modération, réservée aux administrateurs) :</p>
+<pre>// middlewares/auth.middleware.ts
+export function requireRole(...roles: Role[]) {
+  return (req: Request, _res: Response, next: NextFunction): void => {
+    if (!req.auth || !roles.includes(req.auth.role)) {
+      throw new AppError(403, 'Accès refusé');
+    }
+    next();
+  };
+}</pre>
 <p>Autres composants métier notables : calcul de moyenne de notes via agrégation Prisma
 (<code class="inline">prisma.rating.aggregate</code>), génération de slugs uniques avec normalisation Unicode
 (suppression des accents), workflow de modération à trois états (<code class="inline">PENDING → APPROVED /
 REJECTED</code>) contrôlé par le rôle de l'utilisateur.</p>
+
+<h5>Validation des entrées</h5>
+<p>Chaque route qui accepte un corps de requête déclare son schéma zod, appliqué avant tout accès au repository —
+la logique métier ne reçoit donc jamais de données mal formées :</p>
+<pre>const createModSchema = z.object({
+  title: z.string().min(3).max(100),
+  summary: z.string().min(10).max(300),
+  description: z.string().min(20),
+  gameKey: z.string().min(2),
+  categoryId: z.string().uuid(),
+  gameMetadata: z.record(z.string(), z.unknown()).optional(),
+});
+
+async create(req: Request, res: Response): Promise&lt;void&gt; {
+  const { userId } = requireAuthUser(req);
+  const input = createModSchema.parse(req.body);   // lève une ZodError si invalide
+  const mod = await modService.createMod(userId, input);
+  res.status(201).json(mod);
+}</pre>
+<p>Une entrée invalide (ex. <code class="inline">categoryId</code> qui n'est pas un UUID, titre trop court) lève
+une <code class="inline">ZodError</code>, interceptée par le middleware d'erreur centralisé (7.1) qui répond
+<code class="inline">400</code> avec le détail des champs en cause, sans jamais atteindre la base de données.</p>
+
+<h5>Référence de l'API REST</h5>
+<table>
+<tr><th>Méthode</th><th>Route</th><th>Auth</th><th>Description</th></tr>
+<tr><td>POST</td><td><code class="inline">/api/auth/register</code></td><td>—</td><td>Inscription (limitée en débit)</td></tr>
+<tr><td>POST</td><td><code class="inline">/api/auth/login</code></td><td>—</td><td>Connexion (limitée en débit)</td></tr>
+<tr><td>GET</td><td><code class="inline">/api/categories</code></td><td>—</td><td>Liste des catégories</td></tr>
+<tr><td>GET</td><td><code class="inline">/api/mods</code></td><td>—</td><td>Recherche/liste paginée des mods approuvés</td></tr>
+<tr><td>GET</td><td><code class="inline">/api/mods/:slug</code></td><td>—</td><td>Fiche détaillée d'un mod</td></tr>
+<tr><td>GET</td><td><code class="inline">/api/mods/feed</code></td><td>Utilisateur</td><td>Fil d'activité des mods suivis</td></tr>
+<tr><td>GET</td><td><code class="inline">/api/mods/mine</code></td><td>Utilisateur</td><td>Mods publiés par l'utilisateur connecté</td></tr>
+<tr><td>GET</td><td><code class="inline">/api/mods/moderation/pending</code></td><td>Admin</td><td>Mods en attente de modération</td></tr>
+<tr><td>POST</td><td><code class="inline">/api/mods</code></td><td>Utilisateur</td><td>Création d'un mod</td></tr>
+<tr><td>POST</td><td><code class="inline">/api/mods/:id/versions</code></td><td>Auteur du mod</td><td>Ajout d'une version</td></tr>
+<tr><td>POST</td><td><code class="inline">/api/mods/:id/ratings</code></td><td>Utilisateur</td><td>Notation d'un mod</td></tr>
+<tr><td>POST</td><td><code class="inline">/api/mods/:id/comments</code></td><td>Utilisateur</td><td>Ajout d'un commentaire</td></tr>
+<tr><td>POST / DELETE</td><td><code class="inline">/api/mods/:id/follow</code></td><td>Utilisateur</td><td>Suivre / ne plus suivre un mod</td></tr>
+<tr><td>PATCH</td><td><code class="inline">/api/mods/:id/moderate</code></td><td>Admin</td><td>Approuver / rejeter un mod</td></tr>
+</table>
+<figure>
+  <img src="screenshots/06-admin.png" alt="Capture de la page de modération admin">
+  <figcaption>Fig. 5 — File de modération : le composant métier de changement de statut est appelé depuis cette
+  interface, réservée au rôle ADMIN par <code class="inline">requireRole</code></figcaption>
+</figure>
 </div>
 </div>
 
 <!-- ============ 7. SÉCURITÉ ============ -->
 <div class="section">
 <h1>7. Sécurisation de l'application</h1>
+
+<h2>7.1 Mesures appliquées</h2>
 <table>
 <tr><th>Risque (OWASP)</th><th>Mesure appliquée</th></tr>
 <tr><td>Injection SQL</td><td>Aucune requête SQL brute concaténée ; toutes les requêtes passent par l'API
@@ -508,11 +1046,67 @@ par le créateur, pas un vrai envoi de fichier (la bibliothèque <code class="in
 mais pas encore branchée). Je l'ai laissé de côté pour tenir le délai de 3 jours, et c'est la première évolution
 que je ferais.
 </div>
+
+<h2>7.2 Sécurité côté front-end</h2>
+<p>Le front-end React échappe automatiquement tout contenu affiché via JSX (<code class="inline">{'{'}mod.title{'}'}</code>,
+<code class="inline">{'{'}comment.body{'}'}</code>…) : aucune valeur fournie par un utilisateur (titre de mod,
+commentaire, pseudo) n'est jamais injectée dans le DOM via <code class="inline">dangerouslySetInnerHTML</code>,
+ce qui élimine par construction le risque de XSS stocké sur ces champs — vérifié par une recherche exhaustive de
+cette API dans le code source (aucune occurrence).</p>
+<p>Le jeton JWT est conservé en <code class="inline">localStorage</code> plutôt qu'en cookie <code
+class="inline">httpOnly</code> :</p>
+<pre>function persist(token: string, authUser: AuthUser): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ token, user: authUser }));
+  setAuthToken(token);
+  setUser(authUser);
+}</pre>
+<div class="callout warn">
+<strong>Limite connue et compromis assumé :</strong> un cookie <code class="inline">httpOnly</code> protégerait
+mieux le jeton contre une éventuelle faille XSS (un script malveillant ne pourrait pas le lire), au prix d'une
+gestion CSRF supplémentaire côté serveur. Le <code class="inline">localStorage</code> a été choisi pour la
+simplicité dans le délai imparti, en s'appuyant sur l'absence de vecteur XSS identifié (voir ci-dessus) — ce
+serait le premier point à revoir avant une mise en production réelle.
+</div>
+<p>Les formulaires utilisent des champs typés natifs (<code class="inline">type="email"</code>, <code
+class="inline">type="password"</code>) qui bénéficient de la validation native du navigateur en complément de la
+validation serveur (zod), et aucune donnée sensible (mot de passe) n'est journalisée côté client.</p>
+
+<h5>CSRF</h5>
+<p>Le CSRF (Cross-Site Request Forgery) exploite le fait qu'un navigateur envoie automatiquement les cookies
+d'un domaine avec chaque requête vers ce domaine, y compris depuis un site tiers malveillant. ModHub n'utilise
+aucun cookie pour l'authentification : le jeton JWT est transmis explicitement dans l'en-tête <code
+class="inline">Authorization: Bearer …</code>, ajouté par le code JavaScript du front-end lui-même. Un site tiers
+ne peut donc pas déclencher une requête authentifiée à l'insu de l'utilisateur, ce qui rend une protection CSRF
+dédiée (jeton anti-CSRF) superflue avec ce choix d'authentification — elle deviendrait nécessaire si le jeton
+était un jour déplacé vers un cookie (voir la limite connue ci-dessus).</p>
+
+<h2>7.3 Veille sur les vulnérabilités de sécurité</h2>
+<p>La veille appliquée sur ce projet repose sur trois leviers concrets, plutôt qu'une simple déclaration
+d'intention :</p>
+<ul>
+<li><strong>Audit des dépendances</strong> — <code class="inline">npm audit</code> exécuté sur le backend et le
+frontend avant chaque livraison, pour détecter les vulnérabilités connues (CVE) dans les paquets utilisés
+(Express, Prisma, jsonwebtoken, bcryptjs, mongoose…).</li>
+<li><strong>Alertes automatiques GitHub Dependabot</strong> — le dépôt étant hébergé sur GitHub, l'activation de
+Dependabot (Settings → Code security) permet de recevoir une alerte et une pull request automatique dès qu'une
+vulnérabilité est publiée sur une dépendance du projet, sans surveillance manuelle continue.</li>
+<li><strong>Suivi des avis OWASP</strong> — le Top 10 OWASP (utilisé comme grille de lecture section 7.1) est
+mis à jour périodiquement par la fondation ; le réexaminer à chaque évolution majeure du projet permet de vérifier
+qu'aucune nouvelle catégorie de risque n'est apparue depuis la dernière revue.</li>
+</ul>
+<div class="callout">
+Concrètement sur ModHub : aucune vulnérabilité de sévérité haute ou critique n'était signalée par <code
+class="inline">npm audit</code> sur les dépendances directes au moment de la rédaction de ce dossier. La veille
+reste manuelle (pas encore d'intégration continue programmée) : c'est une limite assumée d'un projet réalisé en
+3 jours, pas un point ignoré par méconnaissance.
+</div>
 </div>
 
 <!-- ============ 8. TESTS ============ -->
 <div class="section">
 <h1>8. Tests</h1>
+
+<h2>8.1 Stratégie de test</h2>
 <p>J'ai choisi d'écrire des <strong>tests d'intégration</strong> plutôt que des tests unitaires avec des mocks :
 chaque test lance l'application réelle (<code class="inline">createApp()</code>), l'appelle en HTTP avec Supertest
 sur les vraies bases de développement, puis supprime ce qu'il a créé. C'est un peu plus lent, mais ça prouve que
@@ -520,7 +1114,7 @@ l'application fonctionne vraiment de bout en bout.</p>
 <pre>it('crée un mod (Postgres) et enregistre ses métadonnées jeu (Mongo)', async () => {
   const res = await request(app).post('/api/mods')
     .set('Authorization', `Bearer ${token}`)
-    .send({ title: '...', gameKey: 'arma-reforger', gameMetadata: { workshopId: 'RMM-001' } });
+    .send({ title: '…', gameKey: 'arma-reforger', gameMetadata: { workshopId: 'RMM-001' } });
 
   expect(res.status).toBe(201);
   const metadata = await ModMetadataModel.findOne({ modId: res.body.id }).lean();
@@ -528,17 +1122,80 @@ l'application fonctionne vraiment de bout en bout.</p>
 });</pre>
 <table>
 <tr><th>Suite</th><th>Couverture</th></tr>
-<tr><td><code class="inline">tests/auth.test.ts</code></td><td>Inscription (validation mot de passe, unicité
-email), connexion (identifiants valides/invalides)</td></tr>
-<tr><td><code class="inline">tests/mods.test.ts</code></td><td>Création de mod avec métadonnées croisées SQL/NoSQL,
-ajout de version, contrôle de propriété (rejet 403), lecture d'une fiche mod fusionnant les deux sources</td></tr>
+<tr><td><code class="inline">tests/auth.test.ts</code> (5 cas)</td><td>Inscription (validation mot de passe,
+unicité email), connexion (identifiants valides/invalides)</td></tr>
+<tr><td><code class="inline">tests/mods.test.ts</code> (4 cas)</td><td>Création de mod avec métadonnées croisées
+SQL/NoSQL, ajout de version, contrôle de propriété (rejet 403), lecture d'une fiche mod fusionnant les deux
+sources</td></tr>
 </table>
-<p><strong>Résultat</strong> : 9 tests, 9 succès lors de la dernière exécution complète (12/09/2026), contre les bases réelles (Supabase + MongoDB).</p>
+
+<h2>8.2 Jeu d'essai</h2>
+<p>Deux jeux de données distincts sont utilisés : des données générées dynamiquement pour les tests automatisés
+(pour éviter toute collision entre exécutions), et un jeu de données de démonstration fixe pour la démo manuelle
+et la présentation orale.</p>
+
+<h3>Jeu d'essai automatisé (<code class="inline">tests/*.test.ts</code>)</h3>
+<table>
+<tr><th>Donnée</th><th>Valeur</th></tr>
+<tr><td>Compte créateur de test</td><td><code class="inline">creator-{'{'}timestamp{'}'}@modhub.dev</code> /
+<code class="inline">SuperSecret123</code> (email horodaté pour rester unique à chaque exécution)</td></tr>
+<tr><td>Mod créé</td><td>« Realistic Military Movement », <code class="inline">gameKey: arma-reforger</code>,
+métadonnées <code class="inline">{'{'} workshopId: 'RMM-001', requiredDLC: ['none'] {'}'}</code></td></tr>
+<tr><td>Version ajoutée</td><td>« 1.0.0 », changelog « Première version publique », fichier fictif de 1024 octets</td></tr>
+<tr><td>Cas d'erreur testé</td><td>Un second compte (« Autre ») tente d'ajouter une version sur le mod du premier
+compte → 403 attendu</td></tr>
+</table>
+
+<h3>Jeu de données de démonstration (<code class="inline">tests/seed_demo.mjs</code>)</h3>
+<table>
+<tr><th>Donnée</th><th>Valeur</th></tr>
+<tr><td>Compte créateur démo</td><td><code class="inline">demo-creator@modhub.dev</code> / <code
+class="inline">DemoPass123</code>, promu administrateur pour pouvoir modérer</td></tr>
+<tr><td>Mods publiés (approuvés)</td><td>« Realistic Military Movement » (catégorie Gameplay), « Textures Terrain
+4K » (catégorie Graphismes), « Everon Extended » (catégorie Cartes) — tous <code class="inline">gameKey:
+arma-reforger</code>, chacun avec un <code class="inline">workshopId</code> réaliste</td></tr>
+<tr><td>Version supplémentaire</td><td>« Realistic Military Movement » reçoit une version 1.2.0 (« Correction de
+la synchronisation d'animation en multijoueur »), en plus de sa version 1.0.0 — pour illustrer un changelog avec
+historique</td></tr>
+</table>
+<figure>
+  <img src="screenshots/05-dashboard.png" alt="Capture du tableau de bord créateur">
+  <figcaption>Fig. 6 — Tableau de bord du compte de démonstration : les trois mods du jeu d'essai, statut
+  APPROVED</figcaption>
+</figure>
+
+<h3>Cas limites couverts par les tests</h3>
+<table>
+<tr><th>Cas</th><th>Résultat attendu et vérifié</th></tr>
+<tr><td>Mot de passe trop court à l'inscription (<code class="inline">"123"</code>)</td><td>400 — rejeté par le
+schéma zod avant tout accès à la base</td></tr>
+<tr><td>Inscription avec un email déjà utilisé</td><td>409 — contrainte d'unicité <code
+class="inline">User.email</code> respectée</td></tr>
+<tr><td>Connexion avec un mauvais mot de passe</td><td>401 — message générique identique à "email inconnu" (pas
+d'énumération de comptes, voir 7.1)</td></tr>
+<tr><td>Ajout de version par un utilisateur qui n'est pas l'auteur du mod</td><td>403 — contrôle de propriété
+dans <code class="inline">mod.service.ts</code> (voir 6.3)</td></tr>
+</table>
+
+<h2>8.3 Résultats</h2>
+<p><strong>Résultat</strong> : 9 tests, 9 succès lors de la dernière exécution complète (12/09/2026), contre les
+bases réelles (Supabase + MongoDB) — aucun mock, donc aucun faux positif possible sur le comportement observé.</p>
 </div>
 
 <!-- ============ 9. BILAN ============ -->
 <div class="section">
 <h1>9. Bilan et perspectives</h1>
+
+<table>
+<tr><th>Indicateur</th><th>Valeur</th></tr>
+<tr><td>Code source (TypeScript, backend + frontend)</td><td>≈ 1 700 lignes</td></tr>
+<tr><td>Endpoints REST</td><td>13 (voir référence complète en 6.2)</td></tr>
+<tr><td>Tables PostgreSQL / collections MongoDB</td><td>7 / 2</td></tr>
+<tr><td>Tests d'intégration</td><td>9 (9 succès à la dernière exécution)</td></tr>
+<tr><td>Commits Git (tranches livrables)</td><td>6</td></tr>
+<tr><td>Durée de réalisation</td><td>3 jours</td></tr>
+</table>
+
 <h2>9.1 Difficultés rencontrées</h2>
 <ul>
 <li><strong>Absence de Docker fonctionnel</strong> sur la machine de développement (pas de distribution WSL2
@@ -554,19 +1211,22 @@ string[]</code>) : traité par une fonction utilitaire de validation plutôt qu'
 <ul>
 <li>Concevoir une API en couches (routes, contrôleurs, services, repositories) et séparer l'accès aux données
 SQL et NoSQL</li>
-<li>Modéliser une base relationnelle avec Prisma : clés étrangères, contraintes d'unicité, migrations</li>
+<li>Modéliser une base relationnelle avec un MCD puis un MLD, et l'implémenter avec Prisma : clés étrangères,
+contraintes d'unicité, migrations</li>
 <li>Sécuriser une API : authentification JWT, contrôle des rôles et de la propriété, limitation de débit</li>
-<li>Construire une interface React typée avec authentification et routes protégées</li>
+<li>Construire une interface React typée, sémantique et responsive, avec authentification et routes protégées</li>
 <li>Lire la documentation quand un outil change (Prisma 7) plutôt que de supposer</li>
 </ul>
 <p>Au-delà de la technique, ce projet m'a appris à découper un gros travail en étapes que je peux vérifier
-une par une.</p>
+une par une, et à documenter honnêtement les limites plutôt que de les dissimuler.</p>
 <h2>9.3 Perspectives d'évolution</h2>
 <ul>
-<li>Upload de fichiers réel pour les versions de mods (stockage objet)</li>
+<li>Upload de fichiers réel pour les versions de mods (stockage objet), avec migration du jeton JWT vers un
+cookie <code class="inline">httpOnly</code> (voir 7.2)</li>
 <li>Notifications en temps réel (WebSocket) pour le fil d'activité plutôt qu'un chargement à la demande</li>
 <li>Système de tags libres en complément des catégories fixes</li>
 <li>Tests de bout en bout côté interface (Playwright) en complément des tests d'intégration API</li>
+<li>Rendu côté serveur (SSR) pour le référencement, audit RGAA complet pour l'accessibilité</li>
 </ul>
 </div>
 
@@ -580,15 +1240,35 @@ une par une.</p>
 relationnelle à des objets manipulables dans le code (ici, Prisma)</td></tr>
 <tr><td>JWT</td><td>JSON Web Token — jeton signé transmettant l'identité et le rôle d'un utilisateur authentifié
 sans nécessiter de session stockée côté serveur</td></tr>
+<tr><td>MCD / MLD</td><td>Modèle Conceptuel / Logique de Données — méthode Merise de modélisation d'une base
+relationnelle, du niveau entités-associations (MCD) au niveau tables-clés (MLD)</td></tr>
 <tr><td>EAV</td><td>Entity-Attribute-Value — anti-pattern relationnel consistant à stocker des attributs
 dynamiques ligne par ligne plutôt qu'en colonnes, évité ici grâce au NoSQL</td></tr>
 <tr><td>RLS</td><td>Row Level Security — mécanisme PostgreSQL restreignant l'accès aux lignes d'une table selon
 le rôle de connexion</td></tr>
+<tr><td>RGAA</td><td>Référentiel Général d'Amélioration de l'Accessibilité — référentiel français d'accessibilité
+numérique</td></tr>
 </table>
-<h2>10.2 Sources et ressources</h2>
+
+<h2>10.2 Correspondance avec le Référentiel d'Évaluation</h2>
+<p>Table de correspondance entre les compétences attendues (REAC Développeur Web et Web Mobile) et les sections
+de ce dossier qui en apportent la preuve :</p>
+<table>
+<tr><th>Compétence du référentiel</th><th>Section</th></tr>
+<tr><td>Maquetter des interfaces utilisateur web ou web mobile</td><td class="reac-ok">5.1</td></tr>
+<tr><td>Réaliser des interfaces utilisateur statiques</td><td class="reac-ok">5.2</td></tr>
+<tr><td>Développer la partie dynamique des interfaces utilisateur</td><td class="reac-ok">5.3</td></tr>
+<tr><td>Mettre en place une base de données relationnelle</td><td class="reac-ok">4.2.1, 4.2.2, 6.1</td></tr>
+<tr><td>Développer des composants d'accès aux données SQL et NoSQL</td><td class="reac-ok">4.2.3, 6.2</td></tr>
+<tr><td>Développer des composants métier côté serveur</td><td class="reac-ok">6.3</td></tr>
+<tr><td>Sécuriser une application web</td><td class="reac-ok">7.1, 7.2, 7.3</td></tr>
+</table>
+
+<h2>10.3 Sources et ressources</h2>
 <ul>
 <li>Dépôt du projet : <a href="https://github.com/Maximus04200/ModHub">github.com/Maximus04200/ModHub</a></li>
 <li>Documentation officielle Prisma, Express, React, MongoDB/Mongoose</li>
+<li>OWASP Top 10 (owasp.org) — grille de lecture de la section 7</li>
 </ul>
 </div>
 
