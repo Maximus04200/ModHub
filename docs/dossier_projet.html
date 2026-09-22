@@ -33,7 +33,7 @@
   table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 12px; }
   th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; vertical-align: top; }
   th { background: #eef2fb; }
-  code, pre { font-family: 'Cascadia Code', Consolas, monospace; font-size: 11.5px; }
+  code, pre { font-family: 'Cascadia Code', Consolas, monospace; font-size: 11.5px; font-variant-ligatures: none; font-feature-settings: "liga" 0, "clig" 0, "calt" 0; }
   pre { background: #1c1e22; color: #e8e9ec; padding: 12px 14px; border-radius: 6px; overflow-x: auto; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
   pre .c { color: #7f848e; }
   code.inline { background: #eef0f4; padding: 1px 5px; border-radius: 3px; }
@@ -559,19 +559,17 @@ de passe avec coût réglable ; bcryptjs plutôt que bcrypt pour éviter une dé
 <h2>4.4 Schéma de déploiement</h2>
 <p>En développement, les quatre briques tournent sur des hôtes différents, ce qui a directement influencé les
 choix d'hébergement (voir 9.1) :</p>
-<pre>┌─────────────────┐        ┌───────────────────────┐        ┌──────────────────────┐
-│  Navigateur      │  HTTP  │  Frontend              │  HTTP  │  Backend Express      │
-│  (client final)  │ ─────▶ │  React/Vite (build      │ ─────▶ │  Node.js — poste local│
-│                  │        │  statique ou dev server)│        │  (port 4000)          │
-└─────────────────┘        └───────────────────────┘        └──────────┬───────────┘
-                                                                          │
-                                                    ┌─────────────────────┼─────────────────────┐
-                                                    ▼                                             ▼
-                                        ┌───────────────────────┐                 ┌───────────────────────┐
-                                        │ PostgreSQL (Supabase)  │                 │ MongoDB — local        │
-                                        │ hébergement cloud      │                 │ service Windows        │
-                                        │ gratuit                │                 │ (pas de Docker requis) │
-                                        └───────────────────────┘                 └───────────────────────┘</pre>
+<pre>Navigateur (client final)
+   │  HTTP
+   ▼
+Frontend — React/Vite (build statique ou dev server)
+   │  HTTP
+   ▼
+Backend Express — Node.js, poste local (port 4000)
+   │
+   ├──▶ PostgreSQL (Supabase) — hébergement cloud gratuit
+   │
+   └──▶ MongoDB — service Windows local (pas de Docker requis)</pre>
 <p>Le frontend et le backend restent deux processus séparés communiquant en HTTP (REST), ce qui permettrait de
 les déployer sur deux hébergeurs différents sans changement de code — seule l'URL de l'API (variable
 d'environnement <code class="inline">FRONTEND_URL</code> côté serveur, URL de base de l'API côté client) devrait
@@ -700,9 +698,9 @@ l'autre — les flèches correspondent aux routes déclarées dans <code class="
 <pre>                    ┌───────────────────┐
                     │  Catalogue  (/)    │◀──────────────────────────┐
                     └─────────┬─────────┘                            │
-              clic sur un mod │           clic "Connexion"           │ clic "ModHub"
-                              ▼                       │               │ (logo, retour accueil)
-                    ┌───────────────────┐             ▼               │
+              clic sur un mod │           clic "Connexion"           │ clic logo
+                              ▼                       │               │ "ModHub"
+                    ┌───────────────────┐             ▼               │ (accueil)
                     │ Fiche mod          │   ┌───────────────────┐   │
                     │ (/mods/:slug)      │   │ Connexion (/login) │───┘
                     └─────────┬─────────┘   └─────────┬─────────┘
@@ -915,15 +913,19 @@ bons champs — la preuve que les deux bases sont réellement utilisées, pas se
 <pre>Client (POST /api/mods)
    │
    ▼
-routes/mod.routes.ts        → requireAuth (vérifie le JWT)
+routes/mod.routes.ts
+   → requireAuth (vérifie le JWT)
    │
    ▼
-controllers/mod.controller.ts → createModSchema.parse(req.body)  [zod, voir 6.3]
+controllers/mod.controller.ts
+   → createModSchema.parse(req.body)     [zod, voir 6.3]
    │
    ▼
-services/mod.service.ts     → modRepository.create(...)          [PostgreSQL, écriture principale]
-   │                        → activityRepository.setMetadata(...) [MongoDB, si métadonnées jeu fournies]
-   │                        → activityRepository.record('NEW_MOD', ...) [MongoDB, fil d'activité]
+services/mod.service.ts
+   → modRepository.create(...)           [PostgreSQL, écriture principale]
+   → activityRepository.setMetadata(...) [MongoDB, si métadonnées jeu fournies]
+   → activityRepository.record('NEW_MOD') [MongoDB, fil d'activité]
+   │
    ▼
 Réponse HTTP 201 + mod créé</pre>
 <p>Les deux écritures MongoDB (métadonnées + événement) ne sont pas transactionnelles avec l'écriture PostgreSQL :
@@ -1048,8 +1050,8 @@ que je ferais.
 </div>
 
 <h2>7.2 Sécurité côté front-end</h2>
-<p>Le front-end React échappe automatiquement tout contenu affiché via JSX (<code class="inline">{'{'}mod.title{'}'}</code>,
-<code class="inline">{'{'}comment.body{'}'}</code>…) : aucune valeur fournie par un utilisateur (titre de mod,
+<p>Le front-end React échappe automatiquement tout contenu affiché via JSX (<code class="inline">{mod.title}</code>,
+<code class="inline">{comment.body}</code>…) : aucune valeur fournie par un utilisateur (titre de mod,
 commentaire, pseudo) n'est jamais injectée dans le DOM via <code class="inline">dangerouslySetInnerHTML</code>,
 ce qui élimine par construction le risque de XSS stocké sur ces champs — vérifié par une recherche exhaustive de
 cette API dans le code source (aucune occurrence).</p>
@@ -1137,10 +1139,10 @@ et la présentation orale.</p>
 <h3>Jeu d'essai automatisé (<code class="inline">tests/*.test.ts</code>)</h3>
 <table>
 <tr><th>Donnée</th><th>Valeur</th></tr>
-<tr><td>Compte créateur de test</td><td><code class="inline">creator-{'{'}timestamp{'}'}@modhub.dev</code> /
+<tr><td>Compte créateur de test</td><td><code class="inline">creator-{timestamp}@modhub.dev</code> /
 <code class="inline">SuperSecret123</code> (email horodaté pour rester unique à chaque exécution)</td></tr>
 <tr><td>Mod créé</td><td>« Realistic Military Movement », <code class="inline">gameKey: arma-reforger</code>,
-métadonnées <code class="inline">{'{'} workshopId: 'RMM-001', requiredDLC: ['none'] {'}'}</code></td></tr>
+métadonnées <code class="inline">{ workshopId: 'RMM-001', requiredDLC: ['none'] }</code></td></tr>
 <tr><td>Version ajoutée</td><td>« 1.0.0 », changelog « Première version publique », fichier fictif de 1024 octets</td></tr>
 <tr><td>Cas d'erreur testé</td><td>Un second compte (« Autre ») tente d'ajouter une version sur le mod du premier
 compte → 403 attendu</td></tr>
